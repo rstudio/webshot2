@@ -20,7 +20,7 @@ devtools::install_github(c(
 ## Usage
 
 ```R
-library(webshot)
+library(webshot2)
 
 # Single page
 webshot("https://www.r-project.org")
