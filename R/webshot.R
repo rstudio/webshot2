@@ -5,7 +5,7 @@
 NULL
 
 
-#' @param
+#' @export
 webshot <- function(
   url = NULL,
   file = "webshot.png",
