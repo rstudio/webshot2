@@ -40,10 +40,10 @@ webshot <- function(
   # A list of promises for the screenshots
   res <- mapply(url, file, FUN = function(url, file) {
     new_session_screenshot(cm, url, file)
-  })
+  }, SIMPLIFY = FALSE)
 
 
-  p <- do.call("promise_all", res)
+  p <- promise_all(.list = res)
   cm$wait_for(p)
 }
 
@@ -59,10 +59,11 @@ new_session_screenshot <- function(chromote_master, url, filename) {
     })$
     then(function(value) {
       message(url, " loaded")
-      s$screenshot(filename = filename, show = FALSE, scale = 0.5)
+      s$screenshot(filename = file, show = FALSE, scale = 0.5, sync_ = FALSE)
     })$
     then(function(value) {
       message(url, " screenshot completed")
+      value
     })$
     finally(function() {
       s$close()
