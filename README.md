@@ -16,6 +16,8 @@ devtools::install_github(c(
 ))
 ```
 
+You also need to have the Chrome browser installed on your system. You can also use other browsers based on Chromium, such as Chromium itself, Edge, Vivaldi, Brave, or Opera.
+
 
 ## Usage
 
