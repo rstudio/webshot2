@@ -16,7 +16,6 @@ webshot <- function(
   expand = NULL,
   delay = 0.2,
   zoom = 1,
-  eval = NULL,
   debug = FALSE,
   useragent = NULL
 ) {
@@ -28,31 +27,7 @@ webshot <- function(
   # Convert params cliprect, selector and expand to list if necessary
   if(!is.null(cliprect) && !is.list(cliprect)) cliprect <- list(cliprect)
   if(!is.null(selector) && !is.list(selector)) selector <- list(selector)
-  if(!is.null(expand) && !is.list(expand)) expand <- list(expand)
-
-  # Check length of arguments
-  arg_list <- list(
-    url = url,
-    file = file,
-    vwidth = vwidth,
-    vheight = vheight,
-    cliprect = cliprect,
-    selector = selector,
-    expand = expand,
-    delay = delay,
-    zoom = zoom,
-    eval = eval,
-    debug = debug,
-    options = options
-  )
-  arg_length <- vapply(arg_list, length, numeric(1))
-  max_arg_length <- max(arg_length)
-  if (any(! arg_length %in% c(0, 1, max_arg_length))) {
-    stop("All arguments should have same length or be single elements or NULL")
-  }
-
-  # If url is of length one replicate it to match the maximal length of arguments
-  if (length(url) < max_arg_length) url <- rep(url, max_arg_length)
+  if(!is.null(expand)   && !is.list(expand))   expand   <- list(expand)
 
   # If user provides only one file name but wants several screenshots, then the
   # below code generates as many file names as URLs following the pattern
@@ -84,28 +59,54 @@ webshot <- function(
     })
   }
 
-  # check that expand is a vector of length 1 or 4 or a list of such vectors
-  if (!is.null(expand)) {
-    lengths <- vapply(expand, length, numeric(1))
-    if (any(!lengths %in% c(1, 4))) {
-      stop("'expand' must be a vector with one or four numbers, or a list of such vectors.")
-    }
-  }
+  # Check length of arguments and replicate if necessary
+  args_all <- list(
+    url      = url,
+    file     = file,
+    vwidth   = vwidth,
+    vheight  = vheight,
+    cliprect = cliprect,
+    selector = selector,
+    expand   = expand,
+    delay    = delay,
+    zoom     = zoom,
+    debug    = debug
+  )
+
+  n_urls <- length(url)
+  args_all <- mapply(args_all, names(args_all),
+    FUN = function(arg, name) {
+      if (length(arg) == 0) {
+        return(vector(mode = "list", n_urls))
+      } else if (length(arg) == 1) {
+        return(rep(arg, n_urls))
+      } else if (length(arg) == n_urls) {
+        return(arg)
+      } else {
+        stop("Argument `", name, "` should be NULL, length 1, or same length as `url`.")
+      }
+    },
+    SIMPLIFY = FALSE
+  )
+
+  args_all <- long_to_wide(args_all)
 
   cm <- ChromoteMaster$new()
 
   # A list of promises for the screenshots
-  res <- mapply(url, file, delay, FUN = function(url, file, delay) {
-    new_session_screenshot(cm, url, file, vwidth, vheight, cliprect, selector,
-                           expand, delay, zoom)
-  }, SIMPLIFY = FALSE)
+  res <- lapply(args_all,
+    function(args) {
+      new_session_screenshot(cm,
+        args$url, args$file, args$vwidth, args$vheight, args$cliprect,
+        args$selector, args$expand, args$delay, args$zoom
+      )
+    }
+  )
 
   p <- promise_all(.list = res)
   invisible(cm$wait_for(p))
 }
 
-# TODO: USe selector, zoom, expand, cliprect, delay
-# Also add control of margin/whatever
 
 new_session_screenshot <- function(
   chromote_master,
