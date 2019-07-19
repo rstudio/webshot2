@@ -15,9 +15,7 @@ webshot <- function(
   selector = NULL,
   expand = NULL,
   delay = 0.2,
-  zoom = 1,
-  debug = FALSE,
-  useragent = NULL
+  zoom = 1
 ) {
 
   if (length(url) == 0) {
@@ -69,8 +67,7 @@ webshot <- function(
     selector = selector,
     expand   = expand,
     delay    = delay,
-    zoom     = zoom,
-    debug    = debug
+    zoom     = zoom
   )
 
   n_urls <- length(url)
