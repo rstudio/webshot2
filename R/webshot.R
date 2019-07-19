@@ -241,11 +241,25 @@ new_session_screenshot <- function(
     })$
     then(function(value) {
       message(url, " screenshot completed")
-      value
+      structure(value, class = "webshot")
     })$
     finally(function() {
       s$close()
     })
 
   p
+}
+
+
+knit_print.webshot <- function(x, ...) {
+  lapply(x, function(filename) {
+    res <- readBin(filename, "raw", file.size(filename))
+    ext <- gsub(".*[.]", "", basename(filename))
+    structure(list(image = res, extension = ext), class = "html_screenshot")
+  })
+}
+
+#' @export
+print.webshot <- function(x, ...) {
+   invisible(x)
 }
