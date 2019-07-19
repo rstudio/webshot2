@@ -11,8 +11,8 @@ webshot <- function(
   file = "webshot.png",
   vwidth = 992,
   vheight = 744,
-  cliprect = NULL,
   selector = NULL,
+  cliprect = NULL,
   expand = NULL,
   delay = 0.2,
   zoom = 1
@@ -27,6 +27,27 @@ webshot <- function(
   if(!is.null(selector) && !is.list(selector)) selector <- list(selector)
   if(!is.null(expand)   && !is.list(expand))   expand   <- list(expand)
 
+  if (is.null(selector)) {
+    selector <- "html"
+  }
+
+  if (!is.null(cliprect)) {
+    cliprect <- lapply(cliprect, function(x) {
+      if (is.character(x)) {
+        if (x == "viewport") {
+          x <- c(0, 0, vwidth, vheight)
+        } else {
+          stop("Invalid value for cliprect: ", x)
+        }
+      } else {
+        if (!is.null(x) && !(is.numeric(x) && length(x) == 4)) {
+          stop("'cliprect' must be a vector with four numbers, or a list of such vectors")
+        }
+      }
+      x
+    })
+  }
+
   # If user provides only one file name but wants several screenshots, then the
   # below code generates as many file names as URLs following the pattern
   # "filename001.png", "filename002.png", ... (or whatever extension it is)
@@ -37,34 +58,14 @@ webshot <- function(
     })
   }
 
-  if (!is.null(cliprect) && !is.null(selector)) {
-    stop("Can't specify both cliprect and selector.")
-
-  } else if (is.null(selector) && !is.null(cliprect)) {
-    cliprect <- lapply(cliprect, function(x) {
-      if (is.character(x)) {
-        if (x == "viewport") {
-          x <- c(0, 0, vwidth, vheight)
-        } else {
-          stop("Invalid value for cliprect: ", x)
-        }
-      } else {
-        if (!is.numeric(x) || length(x) != 4) {
-          stop("'cliprect' must be a vector with four numbers, or a list of such vectors")
-        }
-      }
-      x
-    })
-  }
-
   # Check length of arguments and replicate if necessary
   args_all <- list(
     url      = url,
     file     = file,
     vwidth   = vwidth,
     vheight  = vheight,
-    cliprect = cliprect,
     selector = selector,
+    cliprect = cliprect,
     expand   = expand,
     delay    = delay,
     zoom     = zoom
@@ -94,8 +95,8 @@ webshot <- function(
   res <- lapply(args_all,
     function(args) {
       new_session_screenshot(cm,
-        args$url, args$file, args$vwidth, args$vheight, args$cliprect,
-        args$selector, args$expand, args$delay, args$zoom
+        args$url, args$file, args$vwidth, args$vheight, args$selector,
+        args$cliprect, args$expand, args$delay, args$zoom
       )
     }
   )
@@ -111,8 +112,8 @@ new_session_screenshot <- function(
   file,
   vwidth,
   vheight,
-  cliprect,
   selector,
+  cliprect,
   expand,
   delay,
   zoom
@@ -143,7 +144,10 @@ new_session_screenshot <- function(
       }
     })$
     then(function(value) {
-      s$screenshot(filename = file, show = FALSE, scale = 0.5, sync_ = FALSE)
+      s$screenshot(
+        selector = selector, cliprect = cliprect, filename = file,
+        show = FALSE, scale = 0.5, sync_ = FALSE
+      )
     })$
     then(function(value) {
       message(url, " screenshot completed")
