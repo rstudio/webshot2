@@ -146,7 +146,7 @@ new_session_screenshot <- function(
     then(function(value) {
       s$screenshot(
         selector = selector, cliprect = cliprect, filename = file,
-        show = FALSE, scale = 0.5, sync_ = FALSE
+        show = FALSE, scale = zoom, sync_ = FALSE
       )
     })$
     then(function(value) {
