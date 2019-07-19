@@ -31,23 +31,6 @@ webshot <- function(
     selector <- "html"
   }
 
-  if (!is.null(cliprect)) {
-    cliprect <- lapply(cliprect, function(x) {
-      if (is.character(x)) {
-        if (x == "viewport") {
-          x <- c(0, 0, vwidth, vheight)
-        } else {
-          stop("Invalid value for cliprect: ", x)
-        }
-      } else {
-        if (!is.null(x) && !(is.numeric(x) && length(x) == 4)) {
-          stop("'cliprect' must be a vector with four numbers, or a list of such vectors")
-        }
-      }
-      x
-    })
-  }
-
   # If user provides only one file name but wants several screenshots, then the
   # below code generates as many file names as URLs following the pattern
   # "filename001.png", "filename002.png", ... (or whatever extension it is)
@@ -118,6 +101,24 @@ new_session_screenshot <- function(
   delay,
   zoom
 ) {
+
+  if (!is.null(selector) && length(selector) != 1) {
+    stop("`selector` must be single string")
+  }
+
+  if (is.character(cliprect)) {
+    if (cliprect == "viewport") {
+      cliprect <- c(0, 0, vwidth, vheight)
+    } else {
+      stop("Invalid value for cliprect: ", cliprect)
+    }
+  } else {
+    if (!is.null(cliprect) && !(is.numeric(cliprect) && length(cliprect) == 4)) {
+      stop("`cliprect` must be a vector with four numbers, or a list of such vectors")
+    }
+  }
+
+
   s <- NULL
 
   p <- chromote_master$new_session(sync_ = FALSE,
