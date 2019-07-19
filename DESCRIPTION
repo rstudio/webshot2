@@ -1,14 +1,17 @@
 Package: webshot2
-Title: What the Package Does (one line, title case)
+Title: Take Screenshots of Web Pages
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Winston", "Chang", email = "winston@rstudio.com", role = c("aut", "cre"))
+Description: Takes screenshots of web pages, including Shiny applications and R
+    Markdown documents. Webshot2 uses headless Chrome or Chromium as the browser
+    backend.
 Imports:
   chromote,
   later,
   promises
-Depends: R (>= 3.5.1)
-License: What license is it under?
+Depends: R (>= 3.2)
+License: GPL-2
+SystemRequirements: Chrome or other Chromium-based browser for taking screenshots.
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
