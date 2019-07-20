@@ -173,7 +173,9 @@ webshot <- function(
   )
 
   p <- promise_all(.list = res)
-  invisible(cm$wait_for(p))
+  res <- cm$wait_for(p)
+  res <- structure(unlist(res), class = "webshot")
+  res
 }
 
 
@@ -257,9 +259,4 @@ knit_print.webshot <- function(x, ...) {
     ext <- gsub(".*[.]", "", basename(filename))
     structure(list(image = res, extension = ext), class = "html_screenshot")
   })
-}
-
-#' @export
-print.webshot <- function(x, ...) {
-   invisible(x)
 }
