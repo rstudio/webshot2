@@ -243,7 +243,7 @@ new_session_screenshot <- function(
     })$
     then(function(value) {
       message(url, " screenshot completed")
-      structure(value, class = "webshot")
+      normalizePath(value)
     })$
     finally(function() {
       s$close()
