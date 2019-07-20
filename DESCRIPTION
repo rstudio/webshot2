@@ -9,6 +9,8 @@ Imports:
   chromote,
   later,
   promises
+Remotes:
+  rstudio/chromote
 Depends: R (>= 3.2)
 License: GPL-2
 SystemRequirements: Chrome or other Chromium-based browser for taking screenshots.
