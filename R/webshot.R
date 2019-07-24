@@ -12,7 +12,9 @@ NULL
 #' @param file A vector of names of output files. Should end with \code{.png} or
 #'   \code{.pdf}. If several screenshots have to be taken and only one filename
 #'   is provided, then the function appends the index number of the screenshot
-#'   to the file name.
+#'   to the file name. For PDF output, it is just like printing the page to PDF
+#'   in a browser; \code{selector}, \code{cliprect}, \code{expand}, and
+#'   \code{zoom} will not be used for PDFs.
 #' @param vwidth Viewport width. This is the width of the browser "window".
 #' @param vheight Viewport height This is the height of the browser "window".
 #' @param selector One or more CSS selectors specifying a DOM element to set the
@@ -192,6 +194,11 @@ new_session_screenshot <- function(
   zoom
 ) {
 
+  filetype <- tolower(tools::file_ext(file))
+  if (filetype != "png" && filetype != "pdf") {
+    stop("File extension must be 'png' or 'pdf'")
+  }
+
   if (is.null(selector)) {
     selector <- "html"
   } else if (!is.null(selector) && length(selector) != 1) {
@@ -237,11 +244,16 @@ new_session_screenshot <- function(
       }
     })$
     then(function(value) {
-      s$screenshot(
-        filename = file, selector = selector, cliprect = cliprect,
-        expand = expand, scale = zoom,
-        show = FALSE, sync_ = FALSE
-      )
+      if (filetype == "png") {
+        s$screenshot(
+          filename = file, selector = selector, cliprect = cliprect,
+          expand = expand, scale = zoom,
+          show = FALSE, sync_ = FALSE
+        )
+
+      } else if (filetype == "pdf") {
+        s$screenshot_pdf(filename = file, sync_ = FALSE)
+      }
     })$
     then(function(value) {
       message(url, " screenshot completed")
