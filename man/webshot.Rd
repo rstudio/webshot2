@@ -6,7 +6,7 @@
 \usage{
 webshot(url = NULL, file = "webshot.png", vwidth = 992,
   vheight = 744, selector = NULL, cliprect = NULL, expand = NULL,
-  delay = 0.2, zoom = 1)
+  delay = 0.2, zoom = 1, useragent = NULL)
 }
 \arguments{
 \item{url}{A vector of URLs to visit. If multiple URLs are provided, it will
@@ -15,7 +15,9 @@ load and take screenshots of those web pages in parallel.}
 \item{file}{A vector of names of output files. Should end with \code{.png} or
 \code{.pdf}. If several screenshots have to be taken and only one filename
 is provided, then the function appends the index number of the screenshot
-to the file name.}
+to the file name. For PDF output, it is just like printing the page to PDF
+in a browser; \code{selector}, \code{cliprect}, \code{expand}, and
+\code{zoom} will not be used for PDFs.}
 
 \item{vwidth}{Viewport width. This is the width of the browser "window".}
 
@@ -23,8 +25,8 @@ to the file name.}
 
 \item{selector}{One or more CSS selectors specifying a DOM element to set the
 clipping rectangle to. The screenshot will contain these DOM elements. For
-a given selector, if it has more than one match, only the first one will be
-used. This option is not compatible with \code{cliprect}. When taking
+a given selector, if it has more than one match, all matching elements will
+be used. This option is not compatible with \code{cliprect}. When taking
 screenshots of multiple URLs, this parameter can also be a list with same
 length as \code{url} with each element of the list containing a vector of
 CSS selectors to use for the corresponding URL.}
@@ -58,6 +60,8 @@ doubling the height and width of the browser window. This differs from
 using a HiDPI device because some web pages load different,
 higher-resolution images when they know they will be displayed on a HiDPI
 device (but using zoom will not report that there is a HiDPI device).}
+
+\item{useragent}{The User-Agent header used to request the URL.}
 }
 \description{
 Take a screenshot of a URL
@@ -87,14 +91,16 @@ webshot("http://rstudio.github.io/leaflet", "leaflet-clip.png",
 
 # Using CSS selectors to pick out regions
 webshot("http://rstudio.github.io/leaflet", "leaflet-menu.png", selector = ".list-group")
+# With multiple selectors, the screenshot will contain all selected elements
 webshot("http://reddit.com/", "reddit-top.png",
-        selector = "input[type='search']")
+        selector = c("[aria-label='Home']", "input[type='search']"))
 
 # Expand selection region
 webshot("http://rstudio.github.io/leaflet", "leaflet-boxes.png",
         selector = "#installation", expand = c(10, 50, 0, 50))
 
-# If multiple matches for a given selector, it uses the first match
+# If multiple matches for a given selector, it will take a screenshot that
+# contains all matching elements.
 webshot("http://rstudio.github.io/leaflet", "leaflet-p.png", selector = "p")
 webshot("https://github.com/rstudio/shiny/", "shiny-stats.png",
          selector = "ul.numbers-summary")

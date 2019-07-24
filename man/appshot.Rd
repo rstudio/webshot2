@@ -22,7 +22,9 @@ appshot(app, file = "webshot.png", ..., port = getOption("shiny.port"),
 \item{file}{A vector of names of output files. Should end with \code{.png} or
 \code{.pdf}. If several screenshots have to be taken and only one filename
 is provided, then the function appends the index number of the screenshot
-to the file name.}
+to the file name. For PDF output, it is just like printing the page to PDF
+in a browser; \code{selector}, \code{cliprect}, \code{expand}, and
+\code{zoom} will not be used for PDFs.}
 
 \item{...}{Other arguments to pass on to \code{\link{webshot}}.}
 
