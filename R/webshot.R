@@ -19,8 +19,8 @@ NULL
 #' @param vheight Viewport height This is the height of the browser "window".
 #' @param selector One or more CSS selectors specifying a DOM element to set the
 #'   clipping rectangle to. The screenshot will contain these DOM elements. For
-#'   a given selector, if it has more than one match, only the first one will be
-#'   used. This option is not compatible with \code{cliprect}. When taking
+#'   a given selector, if it has more than one match, all matching elements will
+#'   be used. This option is not compatible with \code{cliprect}. When taking
 #'   screenshots of multiple URLs, this parameter can also be a list with same
 #'   length as \code{url} with each element of the list containing a vector of
 #'   CSS selectors to use for the corresponding URL.
@@ -77,14 +77,16 @@ NULL
 #'
 #' # Using CSS selectors to pick out regions
 #' webshot("http://rstudio.github.io/leaflet", "leaflet-menu.png", selector = ".list-group")
+#' # With multiple selectors, the screenshot will contain all selected elements
 #' webshot("http://reddit.com/", "reddit-top.png",
-#'         selector = "input[type='search']")
+#'         selector = c("[aria-label='Home']", "input[type='search']"))
 #'
 #' # Expand selection region
 #' webshot("http://rstudio.github.io/leaflet", "leaflet-boxes.png",
 #'         selector = "#installation", expand = c(10, 50, 0, 50))
 #'
-#' # If multiple matches for a given selector, it uses the first match
+#' # If multiple matches for a given selector, it will take a screenshot that
+#' # contains all matching elements.
 #' webshot("http://rstudio.github.io/leaflet", "leaflet-p.png", selector = "p")
 #' webshot("https://github.com/rstudio/shiny/", "shiny-stats.png",
 #'          selector = "ul.numbers-summary")
@@ -114,7 +116,8 @@ webshot <- function(
     stop("Need url.")
   }
 
-  # Convert params cliprect, selector and expand to list if necessary
+  # Convert params cliprect, selector and expand to list if necessary, because
+  # they can be vectors.
   if(!is.null(cliprect) && !is.list(cliprect)) cliprect <- list(cliprect)
   if(!is.null(selector) && !is.list(selector)) selector <- list(selector)
   if(!is.null(expand)   && !is.list(expand))   expand   <- list(expand)
@@ -205,8 +208,6 @@ new_session_screenshot <- function(
 
   if (is.null(selector)) {
     selector <- "html"
-  } else if (!is.null(selector) && length(selector) != 1) {
-    stop("`selector` must be single string")
   }
 
   if (is.character(cliprect)) {
