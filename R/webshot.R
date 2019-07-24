@@ -50,6 +50,7 @@ NULL
 #'   using a HiDPI device because some web pages load different,
 #'   higher-resolution images when they know they will be displayed on a HiDPI
 #'   device (but using zoom will not report that there is a HiDPI device).
+#' @param useragent The User-Agent header used to request the URL.
 #'
 #' @examples
 #' if (interactive()) {
@@ -105,7 +106,8 @@ webshot <- function(
   cliprect = NULL,
   expand = NULL,
   delay = 0.2,
-  zoom = 1
+  zoom = 1,
+  useragent = NULL
 ) {
 
   if (length(url) == 0) {
@@ -133,15 +135,16 @@ webshot <- function(
 
   # Check length of arguments and replicate if necessary
   args_all <- list(
-    url      = url,
-    file     = file,
-    vwidth   = vwidth,
-    vheight  = vheight,
-    selector = selector,
-    cliprect = cliprect,
-    expand   = expand,
-    delay    = delay,
-    zoom     = zoom
+    url       = url,
+    file      = file,
+    vwidth    = vwidth,
+    vheight   = vheight,
+    selector  = selector,
+    cliprect  = cliprect,
+    expand    = expand,
+    delay     = delay,
+    zoom      = zoom,
+    useragent = useragent
   )
 
   n_urls <- length(url)
@@ -169,7 +172,7 @@ webshot <- function(
     function(args) {
       new_session_screenshot(cm,
         args$url, args$file, args$vwidth, args$vheight, args$selector,
-        args$cliprect, args$expand, args$delay, args$zoom
+        args$cliprect, args$expand, args$delay, args$zoom, args$useragent
       )
     }
   )
@@ -191,7 +194,8 @@ new_session_screenshot <- function(
   cliprect,
   expand,
   delay,
-  zoom
+  zoom,
+  useragent
 ) {
 
   filetype <- tolower(tools::file_ext(file))
@@ -226,6 +230,11 @@ new_session_screenshot <- function(
     )$
     then(function(session) {
       s <<- session
+
+      if (!is.null(useragent)) {
+        s$Network$setUserAgentOverride(userAgent = useragent)
+      }
+
       s$Page$navigate(url, sync_ = FALSE)
       s$Page$loadEventFired(sync_ = FALSE)
     })$
