@@ -43,7 +43,7 @@ rmdshot <- function(doc, file = "webshot.png", ..., delay = NULL, rmd_args = lis
 
     outfile <- tempfile("webshot", fileext = ".html")
     do.call(rmarkdown::render, c(list(doc, output_file = outfile), rmd_args))
-    webshot(outfile, file = file, ...)
+    webshot(file_url(outfile), file = file, ...)
   }
 }
 

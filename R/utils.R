@@ -1,3 +1,19 @@
+# =============================================================================
+# System
+# =============================================================================
+
+is_windows <- function() .Platform$OS.type == "windows"
+
+is_mac     <- function() Sys.info()[['sysname']] == 'Darwin'
+
+is_linux   <- function() Sys.info()[['sysname']] == 'Linux'
+
+
+
+# =============================================================================
+# Data manipulation
+# =============================================================================
+
 # Convert a list of vectors of the same length (like a data frame) to a list of
 # lists, each of which is a one-row "slice" of the input (like a D3 data
 # structure). The input list must be named, and the names must be unique.
@@ -12,6 +28,10 @@ long_to_wide <- function(x) {
   })
 }
 
+
+# =============================================================================
+# Network-related stuff
+# =============================================================================
 
 # Find an available TCP port (to launch Shiny apps)
 available_port <- function(port = NULL, min = 3000, max = 9000) {
@@ -36,4 +56,13 @@ available_port <- function(port = NULL, min = 3000, max = 9000) {
   }
 
   stop("Cannot find an available port")
+}
+
+# Given the path to a file, return a file:// URL.
+file_url <- function(filename) {
+  if (is_windows()) {
+    paste0("file://", normalizePath(filename, mustWork = TRUE))
+  } else {
+    enc2utf8(paste0("file:///", normalizePath(filename, winslash = "/", mustWork = TRUE)))
+  }
 }
