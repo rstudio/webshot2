@@ -30,7 +30,7 @@ available_port <- function(port = NULL, min = 3000, max = 9000) {
       error = function(e) { }
     )
     if (!is.null(handle)) {
-      httpuv::stopServer(handle)
+      handle$stop()
       return(port)
     }
   }
