@@ -225,7 +225,7 @@ new_session_screenshot <- function(
 
   s <- NULL
 
-  p <- chromote_master$new_session(sync_ = FALSE,
+  p <- chromote_master$new_session(wait_ = FALSE,
       width = vwidth,
       height = vheight
     )$
@@ -236,8 +236,8 @@ new_session_screenshot <- function(
         s$Network$setUserAgentOverride(userAgent = useragent)
       }
 
-      s$Page$navigate(url, sync_ = FALSE)
-      s$Page$loadEventFired(sync_ = FALSE)
+      s$Page$navigate(url, wait_ = FALSE)
+      s$Page$loadEventFired(wait_ = FALSE)
     })$
     then(function(value) {
       if (delay > 0) {
@@ -258,11 +258,11 @@ new_session_screenshot <- function(
         s$screenshot(
           filename = file, selector = selector, cliprect = cliprect,
           expand = expand, scale = zoom,
-          show = FALSE, sync_ = FALSE
+          show = FALSE, wait_ = FALSE
         )
 
       } else if (filetype == "pdf") {
-        s$screenshot_pdf(filename = file, sync_ = FALSE)
+        s$screenshot_pdf(filename = file, wait_ = FALSE)
       }
     })$
     then(function(value) {
