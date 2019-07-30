@@ -109,7 +109,7 @@ appshot.shiny.appobj <- function(
       # Wait for app to start
       wait <- utils::getFromNamespace("wait_until_server_exists", "webshot")
       wait(url, timeout = timeout)
-      webshot::webshot(url = url, file = file, ...)
+      webshot2::webshot(url = url, file = file, ...)
     },
     args,
     envvars = envvars
@@ -147,6 +147,6 @@ appshot.shiny.appobj <- function(
   # run the app
   shiny::runApp(app, port = port, display.mode = "normal", launch.browser = FALSE)
 
-  # return webshot::webshot file value
+  # return webshot2::webshot file value
   invisible(p$get_result()) # safe to call as the r_bg must have ended
 }

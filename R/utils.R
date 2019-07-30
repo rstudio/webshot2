@@ -22,7 +22,7 @@ long_to_wide <- function(x) {
     return(x)
 
   lapply(seq_along(x[[1]]), function(n) {
-    lapply(setNames(names(x), names(x)), function(name) {
+    lapply(stats::setNames(names(x), names(x)), function(name) {
       x[[name]][[n]]
     })
   })

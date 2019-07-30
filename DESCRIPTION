@@ -8,7 +8,13 @@ Description: Takes screenshots of web pages, including Shiny applications and R
 Imports:
   chromote (>= 0.0.0.9001),
   later,
-  promises
+  promises,
+  magrittr,
+  callr
+Suggests:
+  shiny,
+  httpuv,
+  rmarkdown
 Remotes:
   rstudio/chromote
 Depends: R (>= 3.2)
