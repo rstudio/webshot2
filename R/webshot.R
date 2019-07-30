@@ -168,7 +168,7 @@ webshot <- function(
 
   args_all <- long_to_wide(args_all)
 
-  cm <- ChromoteMaster$new()
+  cm <- Chromote$new()
 
   # A list of promises for the screenshots
   res <- lapply(args_all,
@@ -188,7 +188,7 @@ webshot <- function(
 
 
 new_session_screenshot <- function(
-  chromote_master,
+  chromote,
   url,
   file,
   vwidth,
@@ -225,7 +225,7 @@ new_session_screenshot <- function(
 
   s <- NULL
 
-  p <- chromote_master$new_session(wait_ = FALSE,
+  p <- chromote$new_session(wait_ = FALSE,
       width = vwidth,
       height = vheight
     )$
