@@ -6,7 +6,7 @@ Description: Takes screenshots of web pages, including Shiny applications and R
     Markdown documents. Webshot2 uses headless Chrome or Chromium as the browser
     backend.
 Imports:
-  chromote,
+  chromote (>= 0.0.0.9001),
   later,
   promises
 Remotes:
