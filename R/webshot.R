@@ -168,7 +168,7 @@ webshot <- function(
 
   args_all <- long_to_wide(args_all)
 
-  cm <- Chromote$new()
+  cm <- default_chromote_object()
 
   # A list of promises for the screenshots
   res <- lapply(args_all,
