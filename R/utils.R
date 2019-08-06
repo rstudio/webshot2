@@ -58,6 +58,13 @@ available_port <- function(port = NULL, min = 3000, max = 9000) {
   stop("Cannot find an available port")
 }
 
+
+# Returns TRUE if a string is a URL (of form "http://...", "ftp://...",
+# "file://..." and so on), FALSE otherwise.
+is_url <- function(x) {
+  grepl("^[a-zA-Z]+://", x)
+}
+
 # Given the path to a file, return a file:// URL.
 file_url <- function(filename) {
   if (is_windows()) {

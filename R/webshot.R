@@ -114,6 +114,9 @@ webshot <- function(
 
   if (length(url) == 0) {
     stop("Need url.")
+  } else if (!is_url(url)) {
+    # `url` is a filename, not an actual URL. Convert to file:// format.
+    url <- file_url(url)
   }
 
   # Convert params cliprect, selector and expand to list if necessary, because
