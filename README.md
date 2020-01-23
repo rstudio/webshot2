@@ -1,7 +1,7 @@
 webshot2
 ========
 
-**webshot2** is meant to be a replacement for [webshot](https://wch.github.io/webshot/), except that instead of using PhantomJS, it uses headless Chrome via the [Chromote](https://github.com/rstudio/chromote) package
+**webshot2** is meant to be a replacement for [webshot](https://wch.github.io/webshot/), except that instead of using PhantomJS, it uses headless Chrome via the [Chromote](https://github.com/rstudio/chromote) package.
 
 
 ## Installation
