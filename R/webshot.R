@@ -298,3 +298,9 @@ knit_print.webshot <- function(x, ...) {
     structure(list(image = res, extension = ext), class = "html_screenshot")
   })
 }
+
+
+#' @export
+print.webshot <- function(x, ...) {
+   invisible(x)
+}
