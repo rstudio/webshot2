@@ -109,15 +109,26 @@ webshot <- function(
   expand = NULL,
   delay = 0.2,
   zoom = 1,
-  useragent = NULL
+  useragent = NULL,
+  max_concurrent = getOption("webshot.concurrent", default = 6)
 ) {
 
   if (length(url) == 0) {
     stop("Need url.")
-  } else if (!is_url(url)) {
-    # `url` is a filename, not an actual URL. Convert to file:// format.
-    url <- file_url(url)
   }
+
+  # Ensure urls are either web URLs or local file URLs.
+  url <- vapply(url,
+    function(x) {
+      if (!is_url(x)) {
+        # `url` is a filename, not an actual URL. Convert to file:// format.
+        file_url(x)
+      } else {
+        x
+      }
+    },
+    character(1)
+  )
 
   # Convert params cliprect, selector and expand to list if necessary, because
   # they can be vectors.
