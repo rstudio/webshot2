@@ -4,9 +4,19 @@
 \alias{webshot}
 \title{Take a screenshot of a URL}
 \usage{
-webshot(url = NULL, file = "webshot.png", vwidth = 992,
-  vheight = 744, selector = NULL, cliprect = NULL, expand = NULL,
-  delay = 0.2, zoom = 1, useragent = NULL)
+webshot(
+  url = NULL,
+  file = "webshot.png",
+  vwidth = 992,
+  vheight = 744,
+  selector = NULL,
+  cliprect = NULL,
+  expand = NULL,
+  delay = 0.2,
+  zoom = 1,
+  useragent = NULL,
+  max_concurrent = getOption("webshot.concurrent", default = 6)
+)
 }
 \arguments{
 \item{url}{A vector of URLs to visit. If multiple URLs are provided, it will
