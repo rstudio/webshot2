@@ -25,4 +25,8 @@ webshot("https://www.r-project.org")
 
 # Multiple pages (in parallel!)
 webshot(c("https://www.r-project.org", "https://www.rstudio.com"))
+
+# Specific height and width
+webshot("https://www.r-project.org", vwidth = 1600, vheight = 900, cliprect = "viewport")
 ```
+
