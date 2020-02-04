@@ -71,6 +71,10 @@ NULL
 #' webshot("http://rstudio.github.io/leaflet", "leaflet-viewport.png",
 #'         cliprect = "viewport")
 #'
+#' # Specific size
+#' webshot("https://www.r-project.org", vwidth = 1600, vheight = 900,
+#'         cliprect = "viewport")
+#'
 #' # Manual clipping rectangle
 #' webshot("http://rstudio.github.io/leaflet", "leaflet-clip.png",
 #'         cliprect = c(200, 5, 400, 300))
