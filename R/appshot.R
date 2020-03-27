@@ -107,7 +107,8 @@ appshot.shiny.appobj <- function(
   p <- r_background_process(
     function(url, file, ..., timeout) {
       # Wait for app to start
-      wait <- utils::getFromNamespace("wait_until_server_exists", "webshot")
+      # Avoid ::: for internal function.
+      wait <- utils::getFromNamespace("wait_until_server_exists", "webshot2")
       wait(url, timeout = timeout)
       webshot2::webshot(url = url, file = file, ...)
     },
