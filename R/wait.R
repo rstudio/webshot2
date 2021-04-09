@@ -15,6 +15,7 @@ webshot_app_timeout <- function() {
 
 wait_until_server_exists <- function(
   url,
+  p,
   timeout = webshot_app_timeout()
 ) {
   cur_time <- function() {
@@ -31,6 +32,16 @@ wait_until_server_exists <- function(
         call. = FALSE
       )
     }
+
+    # Check if there was a failure in starting app server
+    if(!p$is_alive()){
+      stop(
+        "App has failed with error(s):\n",
+        paste(p$read_error_lines(), collapse = "\n"),
+        call. = FALSE
+      )
+    }
+
     Sys.sleep(0.25)
   }
 
