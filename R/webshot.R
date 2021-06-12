@@ -253,8 +253,9 @@ new_session_screenshot <- function(
       if (!is.null(useragent)) {
         s$Network$setUserAgentOverride(userAgent = useragent)
       }
-      c(s$Page$navigate(url, wait_ = FALSE),
-        s$Page$loadEventFired(wait_ = FALSE))
+      promise_all(s$Page$loadEventFired(wait_ = FALSE),
+                  s$Page$navigate(url, wait_ = FALSE))
+
     })$
     then(function(value) {
       if (delay > 0) {
