@@ -50,6 +50,11 @@ NULL
 #'   using a HiDPI device because some web pages load different,
 #'   higher-resolution images when they know they will be displayed on a HiDPI
 #'   device (but using zoom will not report that there is a HiDPI device).
+#' @param use_srgb_color_profile Should a standard color profile (srgb) be used
+#'   when taking screenshots? Forcing a standard profile increases portability
+#'   of screenshots as colors will differ when the monitor of screenshotting
+#'   machines have different color profiles. The downside is that colors of
+#'   output may be slightly different than what you see in your browser.
 #' @param useragent The User-Agent header used to request the URL.
 #'
 #' @examples
@@ -114,6 +119,7 @@ webshot <- function(
   delay = 0.2,
   zoom = 1,
   useragent = NULL,
+  use_srgb_color_profile = TRUE,
   max_concurrent = getOption("webshot.concurrent", default = 6)
 ) {
 
@@ -185,6 +191,15 @@ webshot <- function(
   )
 
   args_all <- long_to_wide(args_all)
+
+  if (use_srgb_color_profile) {
+    # Need to let the main Chromote object know that we want to force a color
+    # profile before starting up chromote session
+    m <- Chromote$new(Chrome$new(args = c(
+      c("--force-color-profile", "srgb")
+    )))
+    set_default_chromote_object(m)
+  }
 
   cm <- default_chromote_object()
 

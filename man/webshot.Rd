@@ -15,6 +15,7 @@ webshot(
   delay = 0.2,
   zoom = 1,
   useragent = NULL,
+  use_srgb_color_profile = TRUE,
   max_concurrent = getOption("webshot.concurrent", default = 6)
 )
 }
@@ -72,6 +73,12 @@ higher-resolution images when they know they will be displayed on a HiDPI
 device (but using zoom will not report that there is a HiDPI device).}
 
 \item{useragent}{The User-Agent header used to request the URL.}
+
+\item{use_srgb_color_profile}{Should a standard color profile (srgb) be used
+when taking screenshots? Forcing a standard profile increases portability
+of screenshots as colors will differ when the monitor of screenshotting
+machines have different color profiles. The downside is that colors of
+output may be slightly different than what you see in your browser.}
 }
 \description{
 Take a screenshot of a URL
