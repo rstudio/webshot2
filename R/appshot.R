@@ -71,12 +71,19 @@ appshot.character <- function(
     ),
     envvars = envvars
   )
+
   on.exit({
-    p$kill()
+    if (p$is_alive()) {
+      p$interrupt()
+      p$wait(2)
+      if (p$is_alive()) {
+        p$kill()
+      }
+    }
   })
 
   # Wait for app to start
-  wait_until_server_exists(url)
+  wait_until_server_exists(url, p)
 
   # Get screenshot
   fileout <- webshot(url, file = file, ...)
@@ -115,6 +122,7 @@ appshot.shiny.appobj <- function(
     args,
     envvars = envvars
   )
+
   on.exit({
     p$kill()
   })
