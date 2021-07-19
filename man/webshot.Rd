@@ -72,6 +72,8 @@ higher-resolution images when they know they will be displayed on a HiDPI
 device (but using zoom will not report that there is a HiDPI device).}
 
 \item{useragent}{The User-Agent header used to request the URL.}
+
+\item{max_concurrent}{(Currently not implemented)}
 }
 \description{
 Take a screenshot of a URL

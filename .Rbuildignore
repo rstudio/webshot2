@@ -1,2 +1,7 @@
 ^webshot2\.Rproj$
 ^\.Rproj\.user$
+^README\.Rmd$
+^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
