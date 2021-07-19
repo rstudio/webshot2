@@ -51,6 +51,7 @@ NULL
 #'   higher-resolution images when they know they will be displayed on a HiDPI
 #'   device (but using zoom will not report that there is a HiDPI device).
 #' @param useragent The User-Agent header used to request the URL.
+#' @param max_concurrent (Currently not implemented)
 #'
 #' @examples
 #' if (interactive()) {
