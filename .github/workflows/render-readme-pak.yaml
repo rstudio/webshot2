@@ -1,6 +1,7 @@
 on:
   push:
     paths:
+      - 'render-readme-pak.yaml'
       - 'README.Rmd'
 
 name: Render README.Rmd
@@ -9,7 +10,7 @@ jobs:
   render:
     runs-on: ubuntu-20.04
     env:
-      RSPM: https://packagemanager.rstudio.com/cran/__linux__/bionic/latest
+      RSPM: https://packagemanager.rstudio.com/cran/__linux__/focal/latest
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
@@ -32,8 +33,10 @@ jobs:
           path: |
             ${{ env.R_LIBS_USER }}/*
             !${{ env.R_LIBS_USER }}/pak
-          key: ubuntu-20.04-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('.github/r-depends.rds') }}
-          restore-keys: ubuntu-20.04-${{ steps.install-r.outputs.installed-r-version }}-1-
+          key: ubuntu-20.04-${{ steps.install-r.outputs.installed-r-version }}-1-readme-${{ hashFiles('.github/r-depends.rds') }}
+          restore-keys: |
+            ubuntu-20.04-${{ steps.install-r.outputs.installed-r-version }}-1-readme-
+            ubuntu-20.04-${{ steps.install-r.outputs.installed-r-version }}-1-
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
