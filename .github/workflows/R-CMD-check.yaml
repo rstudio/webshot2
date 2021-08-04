@@ -95,12 +95,12 @@ jobs:
           - {os: macOS-latest,   r: '${{ needs.rversions.outputs.release }}'}
           - {os: windows-latest, r: '${{ needs.rversions.outputs.release }}'}
           - {os: windows-latest, r: '3.6', rspm: "https://packagemanager.rstudio.com/cran/latest"}
-          - {os: ubuntu-20.04,   r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", http-user-agent: "release" }
-          - {os: ubuntu-20.04,   r: '${{ needs.rversions.outputs.release }}', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
-          - {os: ubuntu-20.04,   r: '${{ needs.rversions.outputs.oldrel1 }}', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
-          - {os: ubuntu-20.04,   r: '${{ needs.rversions.outputs.oldrel2 }}', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
-          - {os: ubuntu-20.04,   r: '${{ needs.rversions.outputs.oldrel3 }}', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
-          - {os: ubuntu-20.04,   r: '${{ needs.rversions.outputs.oldrel4 }}', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
+          - {os: ubuntu-20.04,   r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest", http-user-agent: "release" }
+          - {os: ubuntu-20.04,   r: '${{ needs.rversions.outputs.release }}', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: ubuntu-20.04,   r: '${{ needs.rversions.outputs.oldrel1 }}', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: ubuntu-20.04,   r: '${{ needs.rversions.outputs.oldrel2 }}', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: ubuntu-20.04,   r: '${{ needs.rversions.outputs.oldrel3 }}', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: ubuntu-20.04,   r: '${{ needs.rversions.outputs.oldrel4 }}', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     env:
       RSPM: ${{ matrix.config.rspm }}
@@ -131,6 +131,20 @@ jobs:
             !${{ env.R_LIBS_USER }}/pak
           key: ${{ matrix.config.os }}-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('.github/r-depends.rds') }}
           restore-keys: ${{ matrix.config.os }}-${{ steps.install-r.outputs.installed-r-version }}-1-
+
+      # Remove once chromote is on CRAN
+      - name: Checkout chromote
+        if: runner.os == 'Linux'
+        uses: actions/checkout@v2
+        with:
+          repository: rstudio/chromote
+          path: _chromote
+      - name: Install chromote dependencies
+        if: runner.os == 'Linux'
+        shell: Rscript {0}
+        run: |
+          pak::local_system_requirements(root = "_chromote", execute = TRUE)
+          unlink("_chromote", recursive = TRUE)
 
       - name: Install system dependencies
         if: runner.os == 'Linux'

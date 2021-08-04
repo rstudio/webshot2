@@ -5,6 +5,14 @@
 
 <!-- badges: start -->
 
+[![R build
+status](https://github.com/rstudio/webshot2/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/webshot2/actions)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/webshot2)](https://CRAN.R-project.org/package=webshot2)
+[![CRAN RStudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/webshot2?color=brightgreen)](https://www.r-pkg.org/pkg/webshot2)
+[![RStudio
+community](https://img.shields.io/badge/community-webshot2-blue?style=social&logo=rstudio&logoColor=75AADB)](https://community.rstudio.com/new-topic?category=shiny&tags=webshot2)
 <!-- badges: end -->
 
 **webshot2** is meant to be a replacement for

@@ -15,7 +15,7 @@ jobs:
   pkgdown:
     runs-on: ubuntu-20.04
     env:
-      RSPM: https://packagemanager.rstudio.com/cran/__linux__/bionic/latest
+      RSPM: https://packagemanager.rstudio.com/cran/__linux__/focal/latest
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
@@ -38,8 +38,24 @@ jobs:
           path: |
             ${{ env.R_LIBS_USER }}/*
             !${{ env.R_LIBS_USER }}/pak
-          key: ubuntu-20.04-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('.github/r-depends.rds') }}
-          restore-keys: ubuntu-20.04-${{ steps.install-r.outputs.installed-r-version }}-1-
+          key: ubuntu-20.04-${{ steps.install-r.outputs.installed-r-version }}-pkgdown-1-${{ hashFiles('.github/r-depends.rds') }}
+          restore-keys: |
+            ubuntu-20.04-${{ steps.install-r.outputs.installed-r-version }}-pkgdown-1-
+            ubuntu-20.04-${{ steps.install-r.outputs.installed-r-version }}-1-
+
+      # Remove once chromote is on CRAN
+      - name: Checkout chromote
+        if: runner.os == 'Linux'
+        uses: actions/checkout@v2
+        with:
+          repository: rstudio/chromote
+          path: _chromote
+      - name: Install chromote dependencies
+        if: runner.os == 'Linux'
+        shell: Rscript {0}
+        run: |
+          pak::local_system_requirements(root = "_chromote", execute = TRUE)
+          unlink("_chromote", recursive = TRUE)
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
