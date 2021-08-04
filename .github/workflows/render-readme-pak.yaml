@@ -1,7 +1,7 @@
 on:
   push:
     paths:
-      - 'render-readme-pak.yaml'
+      - '.github/workflows/render-readme-pak.yaml'
       - 'README.Rmd'
 
 name: Render README.Rmd
