@@ -22,7 +22,7 @@ PhantomJS, it uses headless Chrome via the
 
 ## Installation
 
-webshot2 currently depends on a number of in-development packages.
+`webshot2` currently depends on a number of in-development packages.
 
 ``` r
 remotes::install_github("rstudio/webshot2")
@@ -44,7 +44,6 @@ webshot("https://www.r-project.org")
 <img src="man/figures/README-demo-1.png" width="100%" />
 
 ``` r
-
 # Multiple pages (in parallel!)
 webshot(c("https://www.r-project.org", "https://www.rstudio.com"))
 ```
@@ -52,7 +51,6 @@ webshot(c("https://www.r-project.org", "https://www.rstudio.com"))
 <img src="man/figures/README-demo-2.png" width="100%" /><img src="man/figures/README-demo-3.png" width="100%" />
 
 ``` r
-
 # Specific height and width
 webshot("https://www.r-project.org", vwidth = 1600, vheight = 900, cliprect = "viewport")
 ```

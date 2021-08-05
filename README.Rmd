@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 
 ## Installation
 
-webshot2 currently depends on a number of in-development packages.
+`webshot2` currently depends on a number of in-development packages.
 
 ```R
 remotes::install_github("rstudio/webshot2")
@@ -43,10 +43,8 @@ library(webshot2)
 
 # Single page
 webshot("https://www.r-project.org")
-
 # Multiple pages (in parallel!)
 webshot(c("https://www.r-project.org", "https://www.rstudio.com"))
-
 # Specific height and width
 webshot("https://www.r-project.org", vwidth = 1600, vheight = 900, cliprect = "viewport")
 ```
