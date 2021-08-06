@@ -2,11 +2,17 @@ shiny_url <- function(port) {
   sprintf("http://127.0.0.1:%d/", port)
 }
 
-server_exists <- function(url) {
-  !inherits(
-    try({ suppressWarnings(readLines(url, 1)) }, silent = TRUE),
+server_exists <- function(url_id) {
+  # Using a url object instead of the url as a string because readLines() with
+  # url string will cause failed connections to stay open
+  url_obj <- url(url_id)
+  on.exit({close(url_obj)}, add = TRUE)
+
+  ret <- !inherits(
+    try({suppressWarnings(readLines(url_obj, 1))}, silent = TRUE),
     "try-error"
   )
+  ret
 }
 
 webshot_app_timeout <- function() {
@@ -15,6 +21,7 @@ webshot_app_timeout <- function() {
 
 wait_until_server_exists <- function(
   url,
+  p,
   timeout = webshot_app_timeout()
 ) {
   cur_time <- function() {
@@ -31,6 +38,16 @@ wait_until_server_exists <- function(
         call. = FALSE
       )
     }
+
+    # Check if there was a failure in starting app server
+    if(!p$is_alive()){
+      stop(
+        "App has failed with error(s):\n",
+        paste(p$read_error_lines(), collapse = "\n"),
+        call. = FALSE
+      )
+    }
+
     Sys.sleep(0.25)
   }
 
