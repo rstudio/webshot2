@@ -6,11 +6,12 @@ server_exists <- function(url_id) {
   # Using a url object instead of the url as a string because readLines() with
   # url string will cause failed connections to stay open
   url_obj <- url(url_id)
+  on.exit({close(url_obj)}, add = TRUE)
+
   ret <- !inherits(
     try({suppressWarnings(readLines(url_obj, 1))}, silent = TRUE),
     "try-error"
   )
-  close(url_obj)
   ret
 }
 
