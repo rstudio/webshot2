@@ -2,7 +2,7 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-08-06T19:07Z
+last_built: 2021-11-18T15:38Z
 urls:
   reference: https://rstudio.github.io/webshot2/reference
   article: https://rstudio.github.io/webshot2/articles
