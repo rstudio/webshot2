@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![R build
-status](https://github.com/rstudio/webshot2/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/webshot2/actions)
+status](https://github.com/rstudio/webshot2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rstudio/webshot2/actions)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/webshot2)](https://CRAN.R-project.org/package=webshot2)
 [![CRAN RStudio mirror
