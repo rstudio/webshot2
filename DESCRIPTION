@@ -17,6 +17,7 @@ Suggests:
   rmarkdown
 Remotes:
   rstudio/chromote
+SystemRequirements: Google Chrome or other Chromium-based browser. chromium: chromium (rpm) or chromium-browser (deb). TODO Remove this field once chromote is on CRAN
 Depends: R (>= 3.2)
 License: GPL-2
 Encoding: UTF-8
