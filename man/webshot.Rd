@@ -45,10 +45,11 @@ CSS selectors to use for the corresponding URL.}
 are both unspecified, the clipping rectangle will contain the entire page.
 This can be the string \code{"viewport"}, in which case the clipping
 rectangle matches the viewport size, or it can be a four-element numeric
-vector specifying the top, left, width, and height. When taking screenshots
-of multiple URLs, this parameter can also be a list with same length as
-\code{url} with each element of the list being "viewport" or a
-four-elements numeric vector. This option is not compatible with
+vector specifying the left, top, width, and height. (Note that the order of
+left and top is reversed from the original webshot package.) When taking 
+screenshots of multiple URLs, this parameter can also be a list with same 
+length as \code{url} with each element of the list being "viewport" or a
+four-elements numeric vector. This option is not compatible with 
 \code{selector}.}
 
 \item{expand}{A numeric vector specifying how many pixels to expand the
