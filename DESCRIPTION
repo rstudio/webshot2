@@ -7,8 +7,8 @@ Authors@R: c(
       person(given = "RStudio", role = c("cph", "fnd"))
     )
 Description: Takes screenshots of web pages, including Shiny applications and R
-    Markdown documents. Webshot2 uses headless Chrome or Chromium as the browser
-    backend.
+    Markdown documents. 'webshot2' uses headless Chrome or Chromium as the browser
+    back-end.
 Imports:
   chromote (>= 0.1.0),
   later,
