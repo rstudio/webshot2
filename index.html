@@ -21,6 +21,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -33,25 +35,19 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">webshot2</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/rstudio/webshot2/">
+  <a href="https://github.com/rstudio/webshot2/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -68,32 +64,31 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="webshot2" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#webshot2" class="anchor"></a>webshot2</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="webshot2">webshot2<a class="anchor" aria-label="anchor" href="#webshot2"></a>
+</h1></div>
 <!-- badges: start -->
-
-<p><strong>webshot2</strong> is meant to be a replacement for <a href="https://wch.github.io/webshot/">webshot</a>, except that instead of using PhantomJS, it uses headless Chrome via the <a href="https://github.com/rstudio/chromote">Chromote</a> package.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<p><strong>webshot2</strong> is meant to be a replacement for <a href="https://wch.github.io/webshot/" class="external-link">webshot</a>, except that instead of using PhantomJS, it uses headless Chrome via the <a href="https://github.com/rstudio/chromote" class="external-link">Chromote</a> package.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p><code>webshot2</code> currently depends on a number of in-development packages.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rstudio/webshot2"</span><span class="op">)</span></code></pre></div>
 <p>You also need to have the Chrome browser installed on your system. You can also use other browsers based on Chromium, such as Chromium itself, Edge, Vivaldi, Brave, or Opera.</p>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/webshot2">webshot2</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/webshot2" class="external-link">webshot2</a></span><span class="op">)</span>
 
 <span class="co"># Single page</span>
 <span class="fu"><a href="reference/webshot.html">webshot</a></span><span class="op">(</span><span class="st">"https://www.r-project.org"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-demo-1.png" width="100%"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Multiple pages (in parallel!)</span>
-<span class="fu"><a href="reference/webshot.html">webshot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://www.r-project.org"</span>, <span class="st">"https://www.rstudio.com"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="reference/webshot.html">webshot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://www.r-project.org"</span>, <span class="st">"https://www.rstudio.com"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-demo-2.png" width="100%"><img src="reference/figures/README-demo-3.png" width="100%"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Specific height and width</span>
@@ -105,46 +100,57 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/rstudio/webshot2/">https://​github.com/​rstudio/​webshot2/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/rstudio/webshot2/issues">https://​github.com/​rstudio/​webshot2/​issues</a>
-</li>
+<li><a href="https://github.com/rstudio/webshot2/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/rstudio/webshot2/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-2">GPL-2</a></li>
+<li><a href="https://www.r-project.org/Licenses/GPL-2" class="external-link">GPL-2</a></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing webshot2</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Winston Chang <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/rstudio/webshot2/actions"><img src="https://github.com/rstudio/webshot2/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R build status"></a></li>
-<li><a href="https://CRAN.R-project.org/package=webshot2"><img src="https://www.r-pkg.org/badges/version/webshot2" alt="CRAN status"></a></li>
-<li><a href="https://www.r-pkg.org/pkg/webshot2"><img src="https://cranlogs.r-pkg.org/badges/webshot2?color=brightgreen" alt="CRAN RStudio mirror downloads"></a></li>
-<li><a href="https://community.rstudio.com/new-topic?category=shiny&amp;tags=webshot2"><img src="https://img.shields.io/badge/community-webshot2-blue?style=social&amp;logo=rstudio&amp;logoColor=75AADB" alt="RStudio community"></a></li>
+<li><a href="https://github.com/rstudio/webshot2/actions" class="external-link"><img src="https://github.com/rstudio/webshot2/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R build status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=webshot2" class="external-link"><img src="https://www.r-pkg.org/badges/version/webshot2" alt="CRAN status"></a></li>
+<li><a href="https://www.r-pkg.org/pkg/webshot2" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/webshot2?color=brightgreen" alt="CRAN RStudio mirror downloads"></a></li>
+<li><a href="https://community.rstudio.com/new-topic?category=shiny&amp;tags=webshot2" class="external-link"><img src="https://img.shields.io/badge/community-webshot2-blue?style=social&amp;logo=rstudio&amp;logoColor=75AADB" alt="RStudio community"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Winston Chang.</p>
+  <p></p>
+<p>Developed by Winston Chang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -152,6 +158,8 @@
 
   
 
+
+  
 
   </body>
 </html>
