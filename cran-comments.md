@@ -14,11 +14,11 @@ Winston
 * local macOS, R 4.1.3
 * GitHub Actions
   * macOS
-    * 4.1
+    * 4.2
   * windows
-    * 4.1
+    * 4.2
   * ubuntu18
-    * devel, 4.1, 4.0, 3.6, 3.5, 3.4
+    * devel, 4.2, 4.1, 4.0, 3.6, 3.5
 * devtools::
   * check_win_devel()
   * check_win_release()
