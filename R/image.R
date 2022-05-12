@@ -7,7 +7,7 @@
 #' @param filename Character vector containing the path of images to resize.
 #' @param geometry Scaling specification. Can be a percent, as in \code{"50\%"},
 #'   or pixel dimensions like \code{"120x120"}, \code{"120x"}, or \code{"x120"}.
-#'   Any valid ImageMagick geometry specifation can be used. If \code{filename}
+#'   Any valid ImageMagick geometry specification can be used. If \code{filename}
 #'   contains multiple images, this can be a vector to specify distinct sizes
 #'   for each image.
 #'
