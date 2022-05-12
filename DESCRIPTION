@@ -6,7 +6,7 @@ Description: Takes screenshots of web pages, including Shiny applications and R
     Markdown documents. Webshot2 uses headless Chrome or Chromium as the browser
     backend.
 Imports:
-  chromote (>= 0.0.0.9001),
+  chromote (>= 0.1.0),
   later,
   promises,
   magrittr,
@@ -15,9 +15,6 @@ Suggests:
   shiny,
   httpuv,
   rmarkdown
-Remotes:
-  rstudio/chromote
-SystemRequirements: Google Chrome or other Chromium-based browser. chromium: chromium (rpm) or chromium-browser (deb). TODO Remove this field once chromote is on CRAN
 Depends: R (>= 3.2)
 License: GPL-2
 Encoding: UTF-8
