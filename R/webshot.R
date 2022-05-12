@@ -137,9 +137,9 @@ webshot <- function(
 
   # Convert params cliprect, selector and expand to list if necessary, because
   # they can be vectors.
-  if(!is.null(cliprect) && !is.list(cliprect)) cliprect <- list(cliprect)
-  if(!is.null(selector) && !is.list(selector)) selector <- list(selector)
-  if(!is.null(expand)   && !is.list(expand))   expand   <- list(expand)
+  if (!is.null(cliprect) && !is.list(cliprect)) cliprect <- list(cliprect)
+  if (!is.null(selector) && !is.list(selector)) selector <- list(selector)
+  if (!is.null(expand)   && !is.list(expand))   expand   <- list(expand)
 
   if (is.null(selector)) {
     selector <- "html"

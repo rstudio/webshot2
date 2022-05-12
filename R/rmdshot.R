@@ -27,8 +27,15 @@
 #' }
 #'
 #' @export
-rmdshot <- function(doc, file = "webshot.png", ..., delay = NULL, rmd_args = list(),
-                    port = getOption("shiny.port"), envvars = NULL) {
+rmdshot <- function(
+  doc,
+  file = "webshot.png",
+  ...,
+  delay = NULL,
+  rmd_args = list(),
+  port = getOption("shiny.port"),
+  envvars = NULL
+) {
 
   runtime <- rmarkdown::yaml_front_matter(doc)$runtime
 
@@ -78,6 +85,6 @@ rmdshot_shiny <- function(doc, file, ..., rmd_args, port, envvars) {
 
 
 # Borrowed from rmarkdown
-is_shiny <- function (runtime) {
+is_shiny <- function(runtime) {
   !is.null(runtime) && grepl("^shiny", runtime)
 }

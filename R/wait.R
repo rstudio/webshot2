@@ -28,19 +28,20 @@ wait_until_server_exists <- function(
     as.numeric(Sys.time())
   }
   start <- cur_time()
-  while(!server_exists(url)) {
+  while (!server_exists(url)) {
     if (cur_time() - start > timeout) {
       stop(
-        'It took more than ', timeout, ' seconds to launch the Shiny Application. ',
-        'There may be something wrong. The process has been killed. ',
-        'If the app needs more time to be launched, set ',
-        'options(webshot.app.timeout) to a larger value.',
+        "It took more than ", timeout,
+        " seconds to launch the Shiny Application. ",
+        "There may be something wrong. The process has been killed. ",
+        "If the app needs more time to be launched, set ",
+        "options(webshot.app.timeout) to a larger value.",
         call. = FALSE
       )
     }
 
     # Check if there was a failure in starting app server
-    if(!p$is_alive()){
+    if (!p$is_alive()) {
       stop(
         "App has failed with error(s):\n",
         paste(p$read_error_lines(), collapse = "\n"),
