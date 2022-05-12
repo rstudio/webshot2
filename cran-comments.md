@@ -3,6 +3,8 @@
 
 Releasing a new package `{webshot2}`.
 
+The invalid url to https://www.r-pkg.org/pkg/webshot2 should work once the package is on CRAN.
+
 Please let me know if there is any more information I can provide.
 
 Thank you,
@@ -24,8 +26,6 @@ Winston
   * check_win_release()
   * check_win_oldrelease()
 
-0 errors ✔ | 0 warnings ✔ | 0 notes ✔
-
 ## R CMD check results
 
 0 errors ✔ | 0 warnings ✔ | 1 note
@@ -34,3 +34,9 @@ N  checking CRAN incoming feasibility
    Maintainer: ‘Winston Chang <winston@rstudio.com>’
 
    New submission
+
+  Found the following (possibly) invalid URLs:
+    URL: https://www.r-pkg.org/pkg/webshot2
+      From: README.md
+      Status: 500
+      Message: Internal Server Error
