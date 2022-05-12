@@ -1,6 +1,6 @@
 Package: webshot2
 Title: Take Screenshots of Web Pages
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: person("Winston", "Chang", email = "winston@rstudio.com", role = c("aut", "cre"))
 Description: Takes screenshots of web pages, including Shiny applications and R
     Markdown documents. Webshot2 uses headless Chrome or Chromium as the browser
