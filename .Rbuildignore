@@ -6,3 +6,5 @@
 ^docs$
 ^pkgdown$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
+^man-roxygen$

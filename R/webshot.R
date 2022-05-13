@@ -29,10 +29,10 @@ NULL
 #'   This can be the string \code{"viewport"}, in which case the clipping
 #'   rectangle matches the viewport size, or it can be a four-element numeric
 #'   vector specifying the left, top, width, and height. (Note that the order of
-#'   left and top is reversed from the original webshot package.) When taking 
-#'   screenshots of multiple URLs, this parameter can also be a list with same 
+#'   left and top is reversed from the original webshot package.) When taking
+#'   screenshots of multiple URLs, this parameter can also be a list with same
 #'   length as \code{url} with each element of the list being "viewport" or a
-#'   four-elements numeric vector. This option is not compatible with 
+#'   four-elements numeric vector. This option is not compatible with
 #'   \code{selector}.
 #' @param delay Time to wait before taking screenshot, in seconds. Sometimes a
 #'   longer delay is needed for all assets to display properly.
@@ -53,6 +53,7 @@ NULL
 #'   device (but using zoom will not report that there is a HiDPI device).
 #' @param useragent The User-Agent header used to request the URL.
 #' @param max_concurrent (Currently not implemented)
+#' @template webshot-return
 #'
 #' @examples
 #' if (interactive()) {

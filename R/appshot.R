@@ -25,6 +25,7 @@
 #'   supplied (in \code{...}), the delay value is added to the timeout value.
 #'
 #' @param ... Other arguments to pass on to \code{\link{webshot}}.
+#' @template webshot-return
 #'
 #' @rdname appshot
 #' @examples

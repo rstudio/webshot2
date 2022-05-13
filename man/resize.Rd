@@ -15,6 +15,9 @@ Any valid ImageMagick geometry specification can be used. If \code{filename}
 contains multiple images, this can be a vector to specify distinct sizes
 for each image.}
 }
+\value{
+The `filename` supplied but with a class value of `"webshot"`.
+}
 \description{
 This does not change size of the image in pixels, nor does it affect
 appearance -- it is lossless compression. This requires GraphicsMagick

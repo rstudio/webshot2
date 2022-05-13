@@ -12,11 +12,10 @@
 #' @param rmd_args A list of additional arguments to pass to either
 #'   \code{\link[rmarkdown]{render}} (for static Rmd documents) or
 #'   \code{\link[rmarkdown]{run}} (for Rmd documents with runtime:shiny).
+#' @template webshot-return
 #'
 #' @examples
 #' if (interactive()) {
-#'   # rmdshot("rmarkdown_file.Rmd", "snapshot.png")
-#'
 #'   # R Markdown file
 #'   input_file <- system.file("examples/knitr-minimal.Rmd", package = "knitr")
 #'   rmdshot(input_file, "minimal_rmd.png")

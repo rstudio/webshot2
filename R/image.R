@@ -10,6 +10,7 @@
 #'   Any valid ImageMagick geometry specification can be used. If \code{filename}
 #'   contains multiple images, this can be a vector to specify distinct sizes
 #'   for each image.
+#' @return The `filename` supplied but with a class value of `"webshot"`.
 #'
 #' @examples
 #' if (interactive()) {
@@ -77,6 +78,7 @@ resize_one <- function(filename, geometry) {
 #'
 #' @param filename Character vector containing the path of images to resize.
 #'   Must be PNG files.
+#' @return The `filename` supplied but with a class value of `"webshot"`.
 #'
 #' @examples
 #' if (interactive()) {

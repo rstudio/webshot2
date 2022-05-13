@@ -1,4 +1,15 @@
 ## Comments
+
+#### 2022-05-13
+
+Updates:
+* I have added `\value` docs for all five methods.
+* I have removed the commented code in the example of `rmdshot.Rd`
+
+Thank you,
+Winston
+
+
 #### 2022-05-13
 
 Thanks,
