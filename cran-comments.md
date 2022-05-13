@@ -1,4 +1,32 @@
 ## Comments
+#### 2022-05-13
+
+Thanks,
+
+Please add \value to .Rd files regarding exported methods and explain
+the functions results in the documentation. Please write about the
+structure of the output (class) and also what the output means. (If a
+function does not return a value, please document that too, e.g.
+\value{No return value, called for side effects} or similar)
+Missing Rd-tags:
+      appshot.Rd: \value
+      resize.Rd: \value
+      rmdshot.Rd: \value
+      shrink.Rd: \value
+      webshot.Rd: \value
+
+Some code lines in examples are commented out in rmdshot.Rd
+Please never do that. Ideally find toy examples that can be regularly
+executed and checked. Lengthy examples (> 5 sec), can be wrapped in
+\donttest{}.
+If you use external software for examples, please wrap them in
+\dontrun{} instead.
+
+Please fix and resubmit.
+
+Best,
+Victoria Wimmer
+
 #### 2022-05-12
 
 Releasing a new package `{webshot2}`.
