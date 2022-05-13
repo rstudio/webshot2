@@ -96,12 +96,15 @@ variables and values to set for the Shiny app's R process. These will be
 unset after the process exits. This can be used to pass configuration
 information to a Shiny app.</p></dd>
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    <p>Invisibly returns the normalized path to all screenshots taken. The
+  character vector will have a class of `"webshot"`.</p>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="co"># rmdshot("rmarkdown_file.Rmd", "snapshot.png")</span></span>
-<span class="r-in"></span>
 <span class="r-in">  <span class="co"># R Markdown file</span></span>
 <span class="r-in">  <span class="va">input_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"examples/knitr-minimal.Rmd"</span>, package <span class="op">=</span> <span class="st">"knitr"</span><span class="op">)</span></span>
 <span class="r-in">  <span class="fu">rmdshot</span><span class="op">(</span><span class="va">input_file</span>, <span class="st">"minimal_rmd.png"</span><span class="op">)</span></span>
