@@ -42,14 +42,16 @@ variables and values to set for the Shiny app's R process. These will be
 unset after the process exits. This can be used to pass configuration
 information to a Shiny app.}
 }
+\value{
+Invisibly returns the normalized path to all screenshots taken. The
+  character vector will have a class of `"webshot"`.
+}
 \description{
 This function can handle both static Rmd documents and Rmd documents with
 \code{runtime: shiny}.
 }
 \examples{
 if (interactive()) {
-  # rmdshot("rmarkdown_file.Rmd", "snapshot.png")
-
   # R Markdown file
   input_file <- system.file("examples/knitr-minimal.Rmd", package = "knitr")
   rmdshot(input_file, "minimal_rmd.png")
