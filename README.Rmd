@@ -27,9 +27,11 @@ knitr::opts_chunk$set(
 
 ## Installation
 
-`webshot2` currently depends on a number of in-development packages.
-
 ```R
+# CRAN
+install.packages("webshot2")
+
+# Development
 remotes::install_github("rstudio/webshot2")
 ```
 
