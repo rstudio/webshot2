@@ -53,6 +53,7 @@ NULL
 #'   device (but using zoom will not report that there is a HiDPI device).
 #' @param useragent The User-Agent header used to request the URL.
 #' @param max_concurrent (Currently not implemented)
+#' @param verbose Show / Hide console messages
 #' @template webshot-return
 #'
 #' @examples
@@ -117,7 +118,8 @@ webshot <- function(
   delay = 0.2,
   zoom = 1,
   useragent = NULL,
-  max_concurrent = getOption("webshot.concurrent", default = 6)
+  max_concurrent = getOption("webshot.concurrent", default = 6),
+  verbose = TRUE
 ) {
 
   if (length(url) == 0) {
@@ -196,7 +198,8 @@ webshot <- function(
     function(args) {
       new_session_screenshot(cm,
         args$url, args$file, args$vwidth, args$vheight, args$selector,
-        args$cliprect, args$expand, args$delay, args$zoom, args$useragent
+        args$cliprect, args$expand, args$delay, args$zoom, args$useragent,
+        verbose
       )
     }
   )
@@ -219,12 +222,14 @@ new_session_screenshot <- function(
   expand,
   delay,
   zoom,
-  useragent
+  useragent,
+  verbose
 ) {
 
   filetype <- tolower(tools::file_ext(file))
-  if (filetype != "png" && filetype != "pdf") {
-    stop("File extension must be 'png' or 'pdf'")
+  filetypes <- c("png","pdf","jpg","jpeg")
+  if (!filetype %in% filetypes) {
+    stop("File extension must be one of: ", paste(filetypes, collapse = ", "))
   }
 
   if (is.null(selector)) {
@@ -275,7 +280,7 @@ new_session_screenshot <- function(
       }
     })$
     then(function(value) {
-      if (filetype == "png") {
+      if (filetype == "png" || filetype == "jpg" || filetype == "jpeg") {
         s$screenshot(
           filename = file, selector = selector, cliprect = cliprect,
           expand = expand, scale = zoom,
@@ -287,7 +292,9 @@ new_session_screenshot <- function(
       }
     })$
     then(function(value) {
-      message(url, " screenshot completed")
+      if (verbose) {
+        message(url, " screenshot completed")
+      }
       normalizePath(value)
     })$
     finally(function() {

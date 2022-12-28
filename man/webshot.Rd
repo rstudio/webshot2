@@ -15,7 +15,8 @@ webshot(
   delay = 0.2,
   zoom = 1,
   useragent = NULL,
-  max_concurrent = getOption("webshot.concurrent", default = 6)
+  max_concurrent = getOption("webshot.concurrent", default = 6),
+  verbose = TRUE
 )
 }
 \arguments{
@@ -75,6 +76,8 @@ device (but using zoom will not report that there is a HiDPI device).}
 \item{useragent}{The User-Agent header used to request the URL.}
 
 \item{max_concurrent}{(Currently not implemented)}
+
+\item{verbose}{Show / Hide console messages}
 }
 \value{
 Invisibly returns the normalized path to all screenshots taken. The
