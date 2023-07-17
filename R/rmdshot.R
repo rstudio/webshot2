@@ -64,9 +64,10 @@ rmdshot_shiny <- function(doc, file, ..., rmd_args, port, envvars) {
     function(...) {
       rmarkdown::run(...)
     },
-    args = append(
-      list(file = doc, shiny_args = list(port = port)),
-      rmd_args
+    args = list(
+      file = doc,
+      shiny_args = list(port = port),
+      render_args = rmd_args
     ),
     envvars = envvars
   )
@@ -75,7 +76,7 @@ rmdshot_shiny <- function(doc, file, ..., rmd_args, port, envvars) {
   })
 
   # Wait for app to start
-  wait_until_server_exists(url)
+  wait_until_server_exists(url, p)
 
   fileout <- webshot(url, file = file, ...)
 
