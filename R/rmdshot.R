@@ -76,7 +76,7 @@ rmdshot_shiny <- function(doc, file, ..., rmd_args, port, envvars) {
   })
 
   # Wait for app to start
-  wait_until_server_exists(url)
+  wait_until_server_exists(url, p)
 
   fileout <- webshot(url, file = file, ...)
 
