@@ -1,6 +1,6 @@
 # webshot2 (development version)
 
-* Fixed `rmdshot()` when used to screenshot an R Markdown document with `runtime: shiny` or `runtime: shinyrmd` (#52).
+* Fixed #52: `rmdshot()` did not work when used to screenshot an R Markdown document with `runtime: shiny` or `runtime: shinyrmd`. (#53)
 
 # webshot2 0.1.0
 
