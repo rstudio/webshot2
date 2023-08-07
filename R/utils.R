@@ -68,7 +68,7 @@ is_url <- function(x) {
 # Given the path to a file, return a file:// URL.
 file_url <- function(filename) {
   if (is_windows() & getRversion() < R_system_version("4.2.0")) {
-    enc2 <- identify
+    enc2 <- identity
   } else {
     enc2 <- enc2utf8
   }
