@@ -78,7 +78,7 @@ file_url <- function(filename) {
     "file:///",
     normalizePath(
       path = file,
-      winslash = c("/", "\\")[is_windows() + 1],
+      winslash = if (is_windows()) "\\" else "/",
       mustWork = TRUE
     ),
     anchor_suffix
