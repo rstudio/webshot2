@@ -10,6 +10,9 @@ shrink(filename)
 \item{filename}{Character vector containing the path of images to resize.
 Must be PNG files.}
 }
+\value{
+The `filename` supplied but with a class value of `"webshot"`.
+}
 \description{
 This does not change size of the image in pixels, nor does it affect
 appearance -- it is lossless compression. This requires the program

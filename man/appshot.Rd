@@ -54,6 +54,10 @@ information to a Shiny app.}
 is allowed to run before killing the process. If a delay argument is
 supplied (in \code{...}), the delay value is added to the timeout value.}
 }
+\value{
+Invisibly returns the normalized path to all screenshots taken. The
+  character vector will have a class of `"webshot"`.
+}
 \description{
 \code{appshot} performs a \code{\link{webshot}} using two different methods
 depending upon the object provided. If a 'character' is provided (pointing to

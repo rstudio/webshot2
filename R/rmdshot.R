@@ -12,11 +12,10 @@
 #' @param rmd_args A list of additional arguments to pass to either
 #'   \code{\link[rmarkdown]{render}} (for static Rmd documents) or
 #'   \code{\link[rmarkdown]{run}} (for Rmd documents with runtime:shiny).
+#' @template webshot-return
 #'
 #' @examples
 #' if (interactive()) {
-#'   # rmdshot("rmarkdown_file.Rmd", "snapshot.png")
-#'
 #'   # R Markdown file
 #'   input_file <- system.file("examples/knitr-minimal.Rmd", package = "knitr")
 #'   rmdshot(input_file, "minimal_rmd.png")
@@ -27,8 +26,15 @@
 #' }
 #'
 #' @export
-rmdshot <- function(doc, file = "webshot.png", ..., delay = NULL, rmd_args = list(),
-                    port = getOption("shiny.port"), envvars = NULL) {
+rmdshot <- function(
+  doc,
+  file = "webshot.png",
+  ...,
+  delay = NULL,
+  rmd_args = list(),
+  port = getOption("shiny.port"),
+  envvars = NULL
+) {
 
   runtime <- rmarkdown::yaml_front_matter(doc)$runtime
 
@@ -58,9 +64,10 @@ rmdshot_shiny <- function(doc, file, ..., rmd_args, port, envvars) {
     function(...) {
       rmarkdown::run(...)
     },
-    args = append(
-      list(file = doc, shiny_args = list(port = port)),
-      rmd_args
+    args = list(
+      file = doc,
+      shiny_args = list(port = port),
+      render_args = rmd_args
     ),
     envvars = envvars
   )
@@ -69,7 +76,7 @@ rmdshot_shiny <- function(doc, file, ..., rmd_args, port, envvars) {
   })
 
   # Wait for app to start
-  wait_until_server_exists(url)
+  wait_until_server_exists(url, p)
 
   fileout <- webshot(url, file = file, ...)
 
@@ -78,6 +85,6 @@ rmdshot_shiny <- function(doc, file, ..., rmd_args, port, envvars) {
 
 
 # Borrowed from rmarkdown
-is_shiny <- function (runtime) {
+is_shiny <- function(runtime) {
   !is.null(runtime) && grepl("^shiny", runtime)
 }

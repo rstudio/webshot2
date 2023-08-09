@@ -7,9 +7,10 @@
 #' @param filename Character vector containing the path of images to resize.
 #' @param geometry Scaling specification. Can be a percent, as in \code{"50\%"},
 #'   or pixel dimensions like \code{"120x120"}, \code{"120x"}, or \code{"x120"}.
-#'   Any valid ImageMagick geometry specifation can be used. If \code{filename}
+#'   Any valid ImageMagick geometry specification can be used. If \code{filename}
 #'   contains multiple images, this can be a vector to specify distinct sizes
 #'   for each image.
+#' @return The `filename` supplied but with a class value of `"webshot"`.
 #'
 #' @examples
 #' if (interactive()) {
@@ -60,7 +61,7 @@ resize_one <- function(filename, geometry) {
   res <- system2(prog, args)
 
   if (res != 0)
-    stop ("Resizing with `gm convert`, `magick convert` or `convert` failed.")
+    stop("Resizing with `gm convert`, `magick convert` or `convert` failed.")
 
   filename
 }
@@ -77,6 +78,7 @@ resize_one <- function(filename, geometry) {
 #'
 #' @param filename Character vector containing the path of images to resize.
 #'   Must be PNG files.
+#' @return The `filename` supplied but with a class value of `"webshot"`.
 #'
 #' @examples
 #' if (interactive()) {
@@ -97,46 +99,57 @@ shrink_one <- function(filename) {
   if (optipng == "")
     stop("optipng not found in path. optipng must be installed and in path.")
 
-  res <- system2('optipng', filename)
+  res <- system2("optipng", filename)
 
   if (res != 0)
-    stop ("Shrinking with `optipng` failed.")
+    stop("Shrinking with `optipng` failed.")
 
   filename
 }
 
 
 # Borrowed from animation package, with some adaptations.
-find_magic = function() {
+find_magic <- function() {
   # try to look for ImageMagick in the Windows Registry Hive, the Program Files
   # directory and the LyX installation
   if (!inherits(try({
-    magick.path = utils::readRegistry('SOFTWARE\\ImageMagick\\Current')$BinPath
-  }, silent = TRUE), 'try-error')) {
-    if (nzchar(magick.path)) {
-      convert = normalizePath(file.path(magick.path, 'convert.exe'), "/", mustWork = FALSE)
+    magick_path <- utils::readRegistry("SOFTWARE\\ImageMagick\\Current")$BinPath
+  }, silent = TRUE), "try-error")) {
+    if (nzchar(magick_path)) {
+      convert <- normalizePath(
+        file.path(magick_path, "convert.exe"), "/",
+        mustWork = FALSE
+      )
     }
   } else if (
-    nzchar(prog <- Sys.getenv('ProgramFiles')) &&
-      length(magick.dir <- list.files(prog, '^ImageMagick.*')) &&
-      length(magick.path <- list.files(file.path(prog, magick.dir), pattern = '^convert\\.exe$',
-                                       full.names = TRUE, recursive = TRUE))
+    nzchar(prog <- Sys.getenv("ProgramFiles")) &&
+      length(magick_dir <- list.files(prog, "^ImageMagick.*")) &&
+      length(magick_path <- list.files(
+        file.path(prog, magick_dir), pattern = "^convert\\.exe$",
+        full.names = TRUE, recursive = TRUE))
   ) {
-    convert = normalizePath(magick.path[1], "/", mustWork = FALSE)
+    convert <- normalizePath(magick_path[1], "/", mustWork = FALSE)
   } else if (!inherits(try({
-    magick.path = utils::readRegistry('LyX.Document\\Shell\\open\\command', 'HCR')
-  }, silent = TRUE), 'try-error')) {
-    convert = file.path(dirname(gsub('(^\"|\" \"%1\"$)', '', magick.path[[1]])), c('..', '../etc'),
-                        'imagemagick', 'convert.exe')
-    convert = convert[file.exists(convert)]
+    magick_path <- utils::readRegistry(
+      "LyX.Document\\Shell\\open\\command",
+      "HCR"
+    )
+  }, silent = TRUE), "try-error")) {
+    convert <- file.path(
+      dirname(gsub("(^\"|\" \"%1\"$)", "", magick_path[[1]])),
+      c("..", "../etc"),
+      "imagemagick",
+      "convert.exe"
+    )
+    convert <- convert[file.exists(convert)]
     if (length(convert)) {
-      convert = normalizePath(convert, "/", mustWork = FALSE)
+      convert <- normalizePath(convert, "/", mustWork = FALSE)
     } else {
-      warning('No way to find ImageMagick!')
+      warning("No way to find ImageMagick!")
       return("")
     }
   } else {
-    warning('ImageMagick not installed yet!')
+    warning("ImageMagick not installed yet!")
     return("")
   }
 
