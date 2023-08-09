@@ -9,7 +9,8 @@ NULL
 #'
 #' @param url A vector of URLs to visit. If multiple URLs are provided, it will
 #'   load and take screenshots of those web pages in parallel.
-#' @param file A vector of names of output files. Should end with \code{.png} or
+#' @param file A vector of names of output files. Should end with an image file
+#'   type (\code{.png}, \code{.jpg}, \code{.jpeg}, or \code{.webp}) or
 #'   \code{.pdf}. If several screenshots have to be taken and only one filename
 #'   is provided, then the function appends the index number of the screenshot
 #'   to the file name. For PDF output, it is just like printing the page to PDF
@@ -227,7 +228,7 @@ new_session_screenshot <- function(
 ) {
 
   filetype <- tolower(tools::file_ext(file))
-  filetypes <- c("png","pdf","jpg","jpeg")
+  filetypes <- c(webshot_image_types(), "pdf")
   if (!filetype %in% filetypes) {
     stop("File extension must be one of: ", paste(filetypes, collapse = ", "))
   }
@@ -280,7 +281,7 @@ new_session_screenshot <- function(
       }
     })$
     then(function(value) {
-      if (filetype == "png" || filetype == "jpg" || filetype == "jpeg") {
+      if (filetype %in% webshot_image_types()) {
         s$screenshot(
           filename = file, selector = selector, cliprect = cliprect,
           expand = expand, scale = zoom,
@@ -302,6 +303,9 @@ new_session_screenshot <- function(
   p
 }
 
+webshot_image_types <- function() {
+   c("png", "jpg", "jpeg", "webp")
+}
 
 knit_print.webshot <- function(x, ...) {
   lapply(x, function(filename) {
