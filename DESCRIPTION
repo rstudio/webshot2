@@ -1,12 +1,16 @@
 Package: webshot2
 Title: Take Screenshots of Web Pages
-Version: 0.0.0.9000
-Authors@R: person("Winston", "Chang", email = "winston@rstudio.com", role = c("aut", "cre"))
+Version: 0.1.0.9000
+Authors@R: c(
+      person("Winston", "Chang", role = c("aut", "cre"), email = "winston@rstudio.com"),
+      person("Barret", "Schloerke", role = c("ctb"), email = "barret@rstudio.com", comment = c(ORCID = "0000-0001-9986-114X")),
+      person(given = "RStudio", role = c("cph", "fnd"))
+    )
 Description: Takes screenshots of web pages, including Shiny applications and R
-    Markdown documents. Webshot2 uses headless Chrome or Chromium as the browser
-    backend.
+    Markdown documents. 'webshot2' uses headless Chrome or Chromium as the browser
+    back-end.
 Imports:
-  chromote (>= 0.0.0.9001),
+  chromote (>= 0.1.0),
   later,
   promises,
   magrittr,
@@ -15,13 +19,10 @@ Suggests:
   shiny,
   httpuv,
   rmarkdown
-Remotes:
-  rstudio/chromote
-SystemRequirements: Google Chrome or other Chromium-based browser. chromium: chromium (rpm) or chromium-browser (deb). TODO Remove this field once chromote is on CRAN
 Depends: R (>= 3.2)
 License: GPL-2
 Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 URL: https://github.com/rstudio/webshot2
 BugReports: https://github.com/rstudio/webshot2/issues
+Language: en-US

@@ -25,6 +25,7 @@
 #'   supplied (in \code{...}), the delay value is added to the timeout value.
 #'
 #' @param ... Other arguments to pass on to \code{\link{webshot}}.
+#' @template webshot-return
 #'
 #' @rdname appshot
 #' @examples
@@ -128,7 +129,7 @@ appshot.shiny.appobj <- function(
   })
 
   # add a delay to the webshot_timeout if it exists
-  if(!is.null(args$delay)) {
+  if (!is.null(args$delay)) {
     webshot_timeout <- webshot_timeout + args$delay
   }
   start_time <- as.numeric(Sys.time())

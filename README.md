@@ -22,9 +22,11 @@ PhantomJS, it uses headless Chrome via the
 
 ## Installation
 
-`webshot2` currently depends on a number of in-development packages.
-
 ``` r
+# CRAN
+install.packages("webshot2")
+
+# Development
 remotes::install_github("rstudio/webshot2")
 ```
 
