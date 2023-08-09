@@ -53,7 +53,7 @@ NULL
 #'   device (but using zoom will not report that there is a HiDPI device).
 #' @param useragent The User-Agent header used to request the URL.
 #' @param max_concurrent (Currently not implemented)
-#' @param verbose Show / Hide console messages
+#' @param quiet If `TRUE`, status updates via console messages are suppressed.
 #' @template webshot-return
 #'
 #' @examples
@@ -119,7 +119,7 @@ webshot <- function(
   zoom = 1,
   useragent = NULL,
   max_concurrent = getOption("webshot.concurrent", default = 6),
-  verbose = TRUE
+  quiet = getOption("webshot.quiet", default = FALSE)
 ) {
 
   if (length(url) == 0) {
@@ -199,7 +199,7 @@ webshot <- function(
       new_session_screenshot(cm,
         args$url, args$file, args$vwidth, args$vheight, args$selector,
         args$cliprect, args$expand, args$delay, args$zoom, args$useragent,
-        verbose
+        quiet
       )
     }
   )
@@ -223,7 +223,7 @@ new_session_screenshot <- function(
   delay,
   zoom,
   useragent,
-  verbose
+  quiet
 ) {
 
   filetype <- tolower(tools::file_ext(file))
@@ -292,9 +292,7 @@ new_session_screenshot <- function(
       }
     })$
     then(function(value) {
-      if (verbose) {
-        message(url, " screenshot completed")
-      }
+      if (!isTRUE(quiet)) message(url, " screenshot completed")
       normalizePath(value)
     })$
     finally(function() {
