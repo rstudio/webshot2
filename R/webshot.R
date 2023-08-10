@@ -9,7 +9,8 @@ NULL
 #'
 #' @param url A vector of URLs to visit. If multiple URLs are provided, it will
 #'   load and take screenshots of those web pages in parallel.
-#' @param file A vector of names of output files. Should end with \code{.png} or
+#' @param file A vector of names of output files. Should end with an image file
+#'   type (\code{.png}, \code{.jpg}, \code{.jpeg}, or \code{.webp}) or
 #'   \code{.pdf}. If several screenshots have to be taken and only one filename
 #'   is provided, then the function appends the index number of the screenshot
 #'   to the file name. For PDF output, it is just like printing the page to PDF
@@ -53,6 +54,7 @@ NULL
 #'   device (but using zoom will not report that there is a HiDPI device).
 #' @param useragent The User-Agent header used to request the URL.
 #' @param max_concurrent (Currently not implemented)
+#' @param quiet If `TRUE`, status updates via console messages are suppressed.
 #' @template webshot-return
 #'
 #' @examples
@@ -117,7 +119,8 @@ webshot <- function(
   delay = 0.2,
   zoom = 1,
   useragent = NULL,
-  max_concurrent = getOption("webshot.concurrent", default = 6)
+  max_concurrent = getOption("webshot.concurrent", default = 6),
+  quiet = getOption("webshot.quiet", default = FALSE)
 ) {
 
   if (length(url) == 0) {
@@ -196,7 +199,8 @@ webshot <- function(
     function(args) {
       new_session_screenshot(cm,
         args$url, args$file, args$vwidth, args$vheight, args$selector,
-        args$cliprect, args$expand, args$delay, args$zoom, args$useragent
+        args$cliprect, args$expand, args$delay, args$zoom, args$useragent,
+        quiet
       )
     }
   )
@@ -219,12 +223,14 @@ new_session_screenshot <- function(
   expand,
   delay,
   zoom,
-  useragent
+  useragent,
+  quiet
 ) {
 
   filetype <- tolower(tools::file_ext(file))
-  if (filetype != "png" && filetype != "pdf") {
-    stop("File extension must be 'png' or 'pdf'")
+  filetypes <- c(webshot_image_types(), "pdf")
+  if (!filetype %in% filetypes) {
+    stop("File extension must be one of: ", paste(filetypes, collapse = ", "))
   }
 
   if (is.null(selector)) {
@@ -275,7 +281,7 @@ new_session_screenshot <- function(
       }
     })$
     then(function(value) {
-      if (filetype == "png") {
+      if (filetype %in% webshot_image_types()) {
         s$screenshot(
           filename = file, selector = selector, cliprect = cliprect,
           expand = expand, scale = zoom,
@@ -287,7 +293,7 @@ new_session_screenshot <- function(
       }
     })$
     then(function(value) {
-      message(url, " screenshot completed")
+      if (!isTRUE(quiet)) message(url, " screenshot completed")
       normalizePath(value)
     })$
     finally(function() {
@@ -297,6 +303,9 @@ new_session_screenshot <- function(
   p
 }
 
+webshot_image_types <- function() {
+   c("png", "jpg", "jpeg", "webp")
+}
 
 knit_print.webshot <- function(x, ...) {
   lapply(x, function(filename) {

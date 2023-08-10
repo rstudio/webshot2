@@ -34,7 +34,8 @@ appshot(
 \arguments{
 \item{app}{A Shiny app object, or a string naming an app directory.}
 
-\item{file}{A vector of names of output files. Should end with \code{.png} or
+\item{file}{A vector of names of output files. Should end with an image file
+type (\code{.png}, \code{.jpg}, \code{.jpeg}, or \code{.webp}) or
 \code{.pdf}. If several screenshots have to be taken and only one filename
 is provided, then the function appends the index number of the screenshot
 to the file name. For PDF output, it is just like printing the page to PDF
