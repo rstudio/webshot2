@@ -76,11 +76,7 @@ file_url <- function(filename) {
   anchor_suffix <- sub(file, "", filename)
   enc2(paste0(
     "file:///",
-    normalizePath(
-      path = file,
-      winslash = if (is_windows()) "\\" else "/",
-      mustWork = TRUE
-    ),
+    normalizePath(path = file, mustWork = TRUE),
     anchor_suffix
   ))
 }
