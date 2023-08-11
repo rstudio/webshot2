@@ -67,9 +67,16 @@ is_url <- function(x) {
 
 # Given the path to a file, return a file:// URL.
 file_url <- function(filename) {
-  if (is_windows()) {
-    paste0("file://", normalizePath(filename, mustWork = TRUE))
+  if (is_windows() && getRversion() < R_system_version("4.2.0")) {
+    enc2 <- identity
   } else {
-    enc2utf8(paste0("file:///", normalizePath(filename, winslash = "/", mustWork = TRUE)))
+    enc2 <- enc2utf8
   }
+  file <- sub("(.*)#[^#]*", "\\1", filename)
+  anchor_suffix <- sub(file, "", filename)
+  enc2(paste0(
+    "file:///",
+    normalizePath(path = file, mustWork = TRUE),
+    anchor_suffix
+  ))
 }
