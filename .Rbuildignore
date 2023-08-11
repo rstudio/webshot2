@@ -8,3 +8,4 @@
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
 ^man-roxygen$
+^_dev$
