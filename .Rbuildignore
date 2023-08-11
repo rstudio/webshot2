@@ -9,3 +9,4 @@
 ^CRAN-SUBMISSION$
 ^man-roxygen$
 ^_dev$
+^revdep$
