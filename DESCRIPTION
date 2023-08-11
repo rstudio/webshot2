@@ -11,9 +11,10 @@ Description: Takes screenshots of web pages, including Shiny applications
     and R Markdown documents. 'webshot2' uses headless Chrome or Chromium
     as the browser back-end.
 License: GPL-2
-URL: https://github.com/rstudio/webshot2
+URL: https://rstudio.github.io/webshot2/,
+    https://github.com/rstudio/webshot2
 BugReports: https://github.com/rstudio/webshot2/issues
-Depends: 
+Depends:
     R (>= 3.2)
 Imports:
     callr,
