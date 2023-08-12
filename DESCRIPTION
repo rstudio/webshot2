@@ -1,6 +1,6 @@
 Package: webshot2
 Title: Take Screenshots of Web Pages
-Version: 0.1.1
+Version: 0.1.1.9000
 Authors@R: c(
     person("Winston", "Chang", , "winston@posit.co", role = c("aut", "cre")),
     person("Barret", "Schloerke", , "barret@posit.co", role = "ctb",

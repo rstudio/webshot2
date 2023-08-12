@@ -1,3 +1,5 @@
+# webshot2 (development version)
+
 # webshot2 0.1.1
 
 * `webshot()` now supports JPEG (`.jpg` or `.jpeg`) and WEBP (`.webp`) image formats. (@trafficonese #45)
