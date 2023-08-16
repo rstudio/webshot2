@@ -19,7 +19,7 @@ optipng to be installed."><!-- mathjax --><script src="https://cdnjs.cloudflare.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">webshot2</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1.9000</span>
       </span>
     </div>
 
@@ -57,7 +57,7 @@ appearance -- it is lossless compression. This requires the program
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">shrink</span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">shrink</span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -65,10 +65,13 @@ appearance -- it is lossless compression. This requires the program
     <dl><dt>filename</dt>
 <dd><p>Character vector containing the path of images to resize.
 Must be PNG files.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The `filename` supplied but with a class value of `"webshot"`.</p>
+    
+
+<p>The `filename` supplied but with a class value of `"webshot"`.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -79,10 +82,10 @@ will be as if the shrinking didn't happen at all.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="webshot.html">webshot</a></span><span class="op">(</span><span class="st">"https://www.r-project.org/"</span>, <span class="st">"r-shrink.png"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">    <span class="fu">shrink</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="webshot.html">webshot</a></span><span class="op">(</span><span class="st">"https://www.r-project.org/"</span>, <span class="st">"r-shrink.png"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu">shrink</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -93,11 +96,11 @@ will be as if the shrinking didn't happen at all.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Winston Chang, RStudio.</p>
+  <p></p><p>Developed by Winston Chang, Posit Software, PBC.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
