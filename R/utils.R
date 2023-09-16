@@ -72,8 +72,8 @@ file_url <- function(filename) {
   } else {
     enc2 <- enc2utf8
   }
-  file <- sub("(.*)#[^#]*", "\\1", filename)
-  anchor_suffix <- sub(file, "", filename)
+	file <- sub("^(.*?)(#.*)?$", "\\1", filename)
+	anchor_suffix <- sub("^(.*?)(#.*)?$", "\\2", filename)
   enc2(paste0(
     "file:///",
     normalizePath(path = file, mustWork = TRUE),
