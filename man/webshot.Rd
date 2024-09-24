@@ -54,13 +54,16 @@ length as \code{url} with each element of the list being "viewport" or a
 four-elements numeric vector. This option is not compatible with
 \code{selector}.}
 
-\item{expand}{A numeric vector specifying how many pixels to expand the
-clipping rectangle by. If one number, the rectangle will be expanded by
-that many pixels on all sides. If four numbers, they specify the top,
-right, bottom, and left, in that order. When taking screenshots of multiple
-URLs, this parameter can also be a list with same length as \code{url} with
-each element of the list containing a single number or four numbers to use
-for the corresponding URL.}
+\item{expand}{A numeric vector specifying how many pixels to expand beyond
+  the clipping rectangle determined by `selector`. If one number, the
+  rectangle will be expanded by that many pixels on all sides. If four
+  numbers, they specify the top, right, bottom, and left, in that order. 
+  This argument is only applied when `selector` is used and is not compatible
+  with `cliprect`.
+
+  When taking screenshots of multiple URLs, this parameter can also be a list
+  with same length as \code{url} with each element of the list containing a
+  single number or four numbers to use for the corresponding URL.}
 
 \item{delay}{Time to wait before taking screenshot, in seconds. Sometimes a
 longer delay is needed for all assets to display properly.}
