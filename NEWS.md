@@ -1,5 +1,7 @@
 # webshot2 (development version)
 
+* Updated the documentation for `webshot()` to clarify that `expand` only applies to the clipping rectangle determined by `selector`. (#68)
+
 # webshot2 0.1.1
 
 * `webshot()` now supports JPEG (`.jpg` or `.jpeg`) and WEBP (`.webp`) image formats. (@trafficonese #45)
