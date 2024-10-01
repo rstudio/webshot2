@@ -1,5 +1,7 @@
 # webshot2 (development version)
 
+* `webshot()` now rounds `vwidth` and `vheight` to the nearest integer to match Chrome's expectations. If this behavior is somehow problematic, you can use `vwidth = I(my_width)` to avoid the conversion. (#70)
+
 # webshot2 0.1.1
 
 * `webshot()` now supports JPEG (`.jpg` or `.jpeg`) and WEBP (`.webp`) image formats. (@trafficonese #45)
