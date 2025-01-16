@@ -22,29 +22,34 @@ NULL
 #' @param selector One or more CSS selectors specifying a DOM element to set the
 #'   clipping rectangle to. The screenshot will contain these DOM elements. For
 #'   a given selector, if it has more than one match, all matching elements will
-#'   be used. This option is not compatible with \code{cliprect}. When taking
-#'   screenshots of multiple URLs, this parameter can also be a list with same
-#'   length as \code{url} with each element of the list containing a vector of
-#'   CSS selectors to use for the corresponding URL.
+#'   be used. This option is not compatible with \code{cliprect}. 
+#' 
+#'   When taking screenshots of multiple URLs, this parameter can also be a list
+#'   with same length as \code{url} with each element of the list containing a
+#'   vector of CSS selectors to use for the corresponding URL.
 #' @param cliprect Clipping rectangle. If \code{cliprect} and \code{selector}
 #'   are both unspecified, the clipping rectangle will contain the entire page.
 #'   This can be the string \code{"viewport"}, in which case the clipping
 #'   rectangle matches the viewport size, or it can be a four-element numeric
 #'   vector specifying the left, top, width, and height. (Note that the order of
-#'   left and top is reversed from the original webshot package.) When taking
-#'   screenshots of multiple URLs, this parameter can also be a list with same
-#'   length as \code{url} with each element of the list being "viewport" or a
-#'   four-elements numeric vector. This option is not compatible with
-#'   \code{selector}.
+#'   left and top is reversed from the original webshot package.) This option is
+#'   not compatible with \code{selector}.
+#' 
+#'   When taking screenshots of multiple URLs, this parameter can also be a list
+#'   with same length as \code{url} with each element of the list being
+#'   "viewport" or a four-elements numeric vector. 
 #' @param delay Time to wait before taking screenshot, in seconds. Sometimes a
 #'   longer delay is needed for all assets to display properly.
-#' @param expand A numeric vector specifying how many pixels to expand the
-#'   clipping rectangle by. If one number, the rectangle will be expanded by
-#'   that many pixels on all sides. If four numbers, they specify the top,
-#'   right, bottom, and left, in that order. When taking screenshots of multiple
-#'   URLs, this parameter can also be a list with same length as \code{url} with
-#'   each element of the list containing a single number or four numbers to use
-#'   for the corresponding URL.
+#' @param expand A numeric vector specifying how many pixels to expand beyond
+#'   the clipping rectangle determined by `selector`. If one number, the
+#'   rectangle will be expanded by that many pixels on all sides. If four
+#'   numbers, they specify the top, right, bottom, and left, in that order. 
+#'   This argument is only applied when `selector` is used and is not compatible
+#'   with `cliprect`.
+#' 
+#'   When taking screenshots of multiple URLs, this parameter can also be a list
+#'   with same length as \code{url} with each element of the list containing a
+#'   single number or four numbers to use for the corresponding URL.
 #' @param zoom A number specifying the zoom factor. A zoom factor of 2 will
 #'   result in twice as many pixels vertically and horizontally. Note that using
 #'   2 is not exactly the same as taking a screenshot on a HiDPI (Retina)
