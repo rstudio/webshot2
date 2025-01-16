@@ -16,8 +16,9 @@ NULL
 #'   to the file name. For PDF output, it is just like printing the page to PDF
 #'   in a browser; \code{selector}, \code{cliprect}, \code{expand}, and
 #'   \code{zoom} will not be used for PDFs.
-#' @param vwidth Viewport width. This is the width of the browser "window".
-#' @param vheight Viewport height This is the height of the browser "window".
+#' @param vwidth,vheight Viewport width and height. This is the width or height
+#'   of the virtual browser "window". Chrome expects integer values; numeric
+#'   values are rounded to the nearest integer.
 #' @param selector One or more CSS selectors specifying a DOM element to set the
 #'   clipping rectangle to. The screenshot will contain these DOM elements. For
 #'   a given selector, if it has more than one match, all matching elements will
@@ -169,8 +170,8 @@ webshot <- function(
   args_all <- list(
     url       = url,
     file      = file,
-    vwidth    = vwidth,
-    vheight   = vheight,
+    vwidth    = as_rounded_int(vwidth), # Chrome requires integer viewport pxs
+    vheight   = as_rounded_int(vheight),
     selector  = selector,
     cliprect  = cliprect,
     expand    = expand,
@@ -256,6 +257,7 @@ new_session_screenshot <- function(
 
 
   s <- NULL
+  err <- NULL
 
   p <- chromote$new_session(wait_ = FALSE,
       width = vwidth,
@@ -301,8 +303,14 @@ new_session_screenshot <- function(
       if (!isTRUE(quiet)) message(url, " screenshot completed")
       normalizePath(value)
     })$
+    catch(function(err) {
+      err <<- err
+    })$
     finally(function() {
-      s$close()
+      # Close down the session if we successfully started one
+      if (!is.null(s)) s$close()
+      # Or rethrow the error if we caught one
+      if (!is.null(err)) signalCondition(err)
     })
 
   p
