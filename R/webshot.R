@@ -274,6 +274,27 @@ new_session_screenshot <- function(
       res
     })$
     then(function(value) {
+      # With chrome's new headless mode (v132+), the new session is initialized,
+      # but our requested viewport size is ignored, so we set it explicitly.
+      promise(function(resolve, reject) {
+        s$Emulation$setDeviceMetricsOverride(
+          width = vwidth,
+          height = vheight,
+          deviceScaleFactor = 1,
+          mobile = FALSE,
+          wait_ = FALSE
+        )$then(function(result) {
+          resolve(result)
+        })
+      })$catch(function(error) {
+        warning(
+          "Could not set viewport size to ", vwidth, "x", vheight, ": ",
+          conditionMessage(error)
+        )
+        value
+      })
+    })$
+    then(function(value) {
       if (delay > 0) {
         promise(function(resolve, reject) {
           later(
@@ -308,7 +329,7 @@ new_session_screenshot <- function(
     })$
     finally(function() {
       # Close down the session if we successfully started one
-      if (!is.null(s)) s$close()
+      # if (!is.null(s)) s$close()
       # Or rethrow the error if we caught one
       if (!is.null(err)) signalCondition(err)
     })
