@@ -329,7 +329,7 @@ new_session_screenshot <- function(
     })$
     finally(function() {
       # Close down the session if we successfully started one
-      # if (!is.null(s)) s$close()
+      if (!is.null(s)) s$close()
       # Or rethrow the error if we caught one
       if (!is.null(err)) signalCondition(err)
     })
