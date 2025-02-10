@@ -6,6 +6,8 @@
 
 * `webshot()` now surfaces errors that occur when working with the lower-level screenshot API provided by Chrome via `{chromote}`. (#69)
 
+* `webshot()` works harder to set the size of the virtual viewport when `vwidth` and `vheight` are used. This change improves compatibility with recent versions of Chrome (>= v132). (#72)
+
 # webshot2 0.1.1
 
 * `webshot()` now supports JPEG (`.jpg` or `.jpeg`) and WEBP (`.webp`) image formats. (@trafficonese #45)
