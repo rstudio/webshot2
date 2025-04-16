@@ -1,4 +1,8 @@
 as_rounded_int <- function(x) {
+  x_name <- deparse(substitute(x))
+  if (!is.numeric(x)) {
+    stop("`", x_name, "` must be an integer number of pixels, not '", x, "'.")
+  }
   if (inherits(x, "AsIs")) x else round(x, digits = 0)
 }
 
