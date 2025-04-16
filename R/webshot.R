@@ -170,8 +170,8 @@ webshot <- function(
   args_all <- list(
     url       = url,
     file      = file,
-    vwidth    = as_rounded_int(vwidth), # Chrome requires integer viewport pxs
-    vheight   = as_rounded_int(vheight),
+    vwidth    = as_pixels_int(vwidth), # Chrome requires integer viewport pxs
+    vheight   = as_pixels_int(vheight),
     selector  = selector,
     cliprect  = cliprect,
     expand    = expand,
