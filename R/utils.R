@@ -1,9 +1,14 @@
 as_pixels_int <- function(x) {
+  if (inherits(x, "AsIs")) {
+    return(x)
+  }
+  
   if (!is.numeric(x)) {
     x_name <- deparse(substitute(x))
     stop("`", x_name, "` must be an integer number of pixels, not '", x, "'.")
   }
-  if (inherits(x, "AsIs")) x else round(x, digits = 0)
+  
+  round(x, digits = 0)
 }
 
 # =============================================================================
