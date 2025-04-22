@@ -10,33 +10,33 @@ NULL
 #' @param url A vector of URLs to visit. If multiple URLs are provided, it will
 #'   load and take screenshots of those web pages in parallel.
 #' @param file A vector of names of output files. Should end with an image file
-#'   type (\code{.png}, \code{.jpg}, \code{.jpeg}, or \code{.webp}) or
-#'   \code{.pdf}. If several screenshots have to be taken and only one filename
+#'   type (`.png`, `.jpg`, `.jpeg`, or `.webp`) or
+#'   `.pdf`. If several screenshots have to be taken and only one filename
 #'   is provided, then the function appends the index number of the screenshot
 #'   to the file name. For PDF output, it is just like printing the page to PDF
-#'   in a browser; \code{selector}, \code{cliprect}, \code{expand}, and
-#'   \code{zoom} will not be used for PDFs.
+#'   in a browser; `selector`, `cliprect`, `expand`, and
+#'   `zoom` will not be used for PDFs.
 #' @param vwidth,vheight Viewport width and height. This is the width or height
 #'   of the virtual browser "window". Chrome expects integer values; numeric
 #'   values are rounded to the nearest integer.
 #' @param selector One or more CSS selectors specifying a DOM element to set the
 #'   clipping rectangle to. The screenshot will contain these DOM elements. For
 #'   a given selector, if it has more than one match, all matching elements will
-#'   be used. This option is not compatible with \code{cliprect}. 
+#'   be used. This option is not compatible with `cliprect`. 
 #' 
 #'   When taking screenshots of multiple URLs, this parameter can also be a list
-#'   with same length as \code{url} with each element of the list containing a
+#'   with same length as `url` with each element of the list containing a
 #'   vector of CSS selectors to use for the corresponding URL.
-#' @param cliprect Clipping rectangle. If \code{cliprect} and \code{selector}
+#' @param cliprect Clipping rectangle. If `cliprect` and `selector`
 #'   are both unspecified, the clipping rectangle will contain the entire page.
-#'   This can be the string \code{"viewport"}, in which case the clipping
+#'   This can be the string `"viewport"`, in which case the clipping
 #'   rectangle matches the viewport size, or it can be a four-element numeric
 #'   vector specifying the left, top, width, and height. (Note that the order of
 #'   left and top is reversed from the original webshot package.) This option is
-#'   not compatible with \code{selector}.
+#'   not compatible with `selector`.
 #' 
 #'   When taking screenshots of multiple URLs, this parameter can also be a list
-#'   with same length as \code{url} with each element of the list being
+#'   with same length as `url` with each element of the list being
 #'   "viewport" or a four-elements numeric vector. 
 #' @param delay Time to wait before taking screenshot, in seconds. Sometimes a
 #'   longer delay is needed for all assets to display properly.
@@ -48,7 +48,7 @@ NULL
 #'   with `cliprect`.
 #' 
 #'   When taking screenshots of multiple URLs, this parameter can also be a list
-#'   with same length as \code{url} with each element of the list containing a
+#'   with same length as `url` with each element of the list containing a
 #'   single number or four numbers to use for the corresponding URL.
 #' @param zoom A number specifying the zoom factor. A zoom factor of 2 will
 #'   result in twice as many pixels vertically and horizontally. Note that using

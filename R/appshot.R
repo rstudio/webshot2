@@ -1,15 +1,15 @@
 #' Take a screenshot of a Shiny app
 #'
-#' \code{appshot} performs a \code{\link{webshot}} using two different methods
+#' `appshot` performs a [webshot()] using two different methods
 #' depending upon the object provided. If a 'character' is provided (pointing to
 #' an app.R file or app directory) an isolated background R process is launched
 #' to run the Shiny application. The current R process then captures the
-#' \code{\link{webshot}}. When a Shiny application object is supplied to
-#' \code{appshot}, it is reversed: the Shiny application runs in the current R
+#' [webshot()]. When a Shiny application object is supplied to
+#' `appshot`, it is reversed: the Shiny application runs in the current R
 #' process and an isolated background R process is launched to capture a
-#' \code{\link{webshot}}. The reason it is reversed in the second case has to do
+#' [webshot()]. The reason it is reversed in the second case has to do
 #' with scoping: although it would be preferable to run the Shiny application in
-#' a background process and call \code{webshot} from the current process, with
+#' a background process and call `webshot` from the current process, with
 #' Shiny application objects, there are potential scoping errors when run this
 #' way.
 #'
@@ -22,9 +22,9 @@
 #'   information to a Shiny app.
 #' @param webshot_timeout The maximum number of seconds the phantom application
 #'   is allowed to run before killing the process. If a delay argument is
-#'   supplied (in \code{...}), the delay value is added to the timeout value.
+#'   supplied (in `...`), the delay value is added to the timeout value.
 #'
-#' @param ... Other arguments to pass on to \code{\link{webshot}}.
+#' @param ... Other arguments to pass on to [webshot()].
 #' @template webshot-return
 #'
 #' @rdname appshot

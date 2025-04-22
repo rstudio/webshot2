@@ -42,7 +42,7 @@ to the file name. For PDF output, it is just like printing the page to PDF
 in a browser; \code{selector}, \code{cliprect}, \code{expand}, and
 \code{zoom} will not be used for PDFs.}
 
-\item{...}{Other arguments to pass on to \code{\link{webshot}}.}
+\item{...}{Other arguments to pass on to \code{\link[=webshot]{webshot()}}.}
 
 \item{port}{Port that Shiny will listen on.}
 
@@ -57,17 +57,17 @@ supplied (in \code{...}), the delay value is added to the timeout value.}
 }
 \value{
 Invisibly returns the normalized path to all screenshots taken. The
-  character vector will have a class of `"webshot"`.
+character vector will have a class of \code{"webshot"}.
 }
 \description{
-\code{appshot} performs a \code{\link{webshot}} using two different methods
+\code{appshot} performs a \code{\link[=webshot]{webshot()}} using two different methods
 depending upon the object provided. If a 'character' is provided (pointing to
 an app.R file or app directory) an isolated background R process is launched
 to run the Shiny application. The current R process then captures the
-\code{\link{webshot}}. When a Shiny application object is supplied to
+\code{\link[=webshot]{webshot()}}. When a Shiny application object is supplied to
 \code{appshot}, it is reversed: the Shiny application runs in the current R
 process and an isolated background R process is launched to capture a
-\code{\link{webshot}}. The reason it is reversed in the second case has to do
+\code{\link[=webshot]{webshot()}}. The reason it is reversed in the second case has to do
 with scoping: although it would be preferable to run the Shiny application in
 a background process and call \code{webshot} from the current process, with
 Shiny application objects, there are potential scoping errors when run this

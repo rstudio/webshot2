@@ -25,7 +25,7 @@ to the file name. For PDF output, it is just like printing the page to PDF
 in a browser; \code{selector}, \code{cliprect}, \code{expand}, and
 \code{zoom} will not be used for PDFs.}
 
-\item{...}{Other arguments to pass on to \code{\link{webshot}}.}
+\item{...}{Other arguments to pass on to \code{\link[=webshot]{webshot()}}.}
 
 \item{delay}{Time to wait before taking screenshot, in seconds. Sometimes a
 longer delay is needed for all assets to display properly. If NULL (the
@@ -33,8 +33,8 @@ default), then it will use 0.2 seconds for static Rmd documents, and 3
 seconds for Rmd documents with runtime:shiny.}
 
 \item{rmd_args}{A list of additional arguments to pass to either
-\code{\link[rmarkdown]{render}} (for static Rmd documents) or
-\code{\link[rmarkdown]{run}} (for Rmd documents with runtime:shiny).}
+\code{\link[rmarkdown:render]{rmarkdown::render()}} (for static Rmd documents) or
+\code{\link[rmarkdown:run]{rmarkdown::run()}} (for Rmd documents with runtime:shiny).}
 
 \item{port}{Port that Shiny will listen on.}
 
@@ -45,7 +45,7 @@ information to a Shiny app.}
 }
 \value{
 Invisibly returns the normalized path to all screenshots taken. The
-  character vector will have a class of `"webshot"`.
+character vector will have a class of \code{"webshot"}.
 }
 \description{
 This function can handle both static Rmd documents and Rmd documents with

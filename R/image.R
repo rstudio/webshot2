@@ -5,9 +5,9 @@
 #' (recommended) or ImageMagick to be installed.
 #'
 #' @param filename Character vector containing the path of images to resize.
-#' @param geometry Scaling specification. Can be a percent, as in \code{"50\%"},
-#'   or pixel dimensions like \code{"120x120"}, \code{"120x"}, or \code{"x120"}.
-#'   Any valid ImageMagick geometry specification can be used. If \code{filename}
+#' @param geometry Scaling specification. Can be a percent, as in `"50\%"`,
+#'   or pixel dimensions like `"120x120"`, `"120x"`, or `"x120"`.
+#'   Any valid ImageMagick geometry specification can be used. If `filename`
 #'   contains multiple images, this can be a vector to specify distinct sizes
 #'   for each image.
 #' @return The `filename` supplied but with a class value of `"webshot"`.
@@ -70,7 +70,7 @@ resize_one <- function(filename, geometry) {
 #'
 #' This does not change size of the image in pixels, nor does it affect
 #' appearance -- it is lossless compression. This requires the program
-#' \code{optipng} to be installed.
+#' `optipng` to be installed.
 #'
 #' If other operations like resizing are performed, shrinking should occur as
 #' the last step. Otherwise, if the resizing happens after file shrinking, it
