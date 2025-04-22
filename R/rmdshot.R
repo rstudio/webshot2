@@ -35,15 +35,20 @@ rmdshot <- function(
   port = getOption("shiny.port"),
   envvars = NULL
 ) {
-
   runtime <- rmarkdown::yaml_front_matter(doc)$runtime
 
   if (is_shiny(runtime)) {
     if (is.null(delay)) delay <- 3
 
-    rmdshot_shiny(doc, file, ..., delay = delay, rmd_args = rmd_args,
-      port = port, envvars = envvars)
-
+    rmdshot_shiny(
+      doc,
+      file,
+      ...,
+      delay = delay,
+      rmd_args = rmd_args,
+      port = port,
+      envvars = envvars
+    )
   } else {
     if (is.null(delay)) delay <- 0.2
 
@@ -55,7 +60,6 @@ rmdshot <- function(
 
 
 rmdshot_shiny <- function(doc, file, ..., rmd_args, port, envvars) {
-
   port <- available_port(port)
   url <- shiny_url(port)
 

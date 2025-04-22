@@ -24,8 +24,13 @@
 #' }
 #' @export
 resize <- function(filename, geometry) {
-  mapply(resize_one, filename = filename, geometry = geometry,
-         SIMPLIFY = FALSE, USE.NAMES = FALSE)
+  mapply(
+    resize_one,
+    filename = filename,
+    geometry = geometry,
+    SIMPLIFY = FALSE,
+    USE.NAMES = FALSE
+  )
   structure(filename, class = "webshot")
 }
 
@@ -50,7 +55,9 @@ resize_one <- function(filename, geometry) {
   }
 
   if (prog == "")
-    stop("None of `gm`, `magick`, or `convert` were found in path. GraphicsMagick or ImageMagick must be installed and in path.")
+    stop(
+      "None of `gm`, `magick`, or `convert` were found in path. GraphicsMagick or ImageMagick must be installed and in path."
+    )
 
   args <- c(filename, "-resize", geometry, filename)
 
@@ -101,8 +108,7 @@ shrink_one <- function(filename) {
 
   res <- system2("optipng", filename)
 
-  if (res != 0)
-    stop("Shrinking with `optipng` failed.")
+  if (res != 0) stop("Shrinking with `optipng` failed.")
 
   filename
 }
@@ -112,29 +118,53 @@ shrink_one <- function(filename) {
 find_magic <- function() {
   # try to look for ImageMagick in the Windows Registry Hive, the Program Files
   # directory and the LyX installation
-  if (!inherits(try({
-    magick_path <- utils::readRegistry("SOFTWARE\\ImageMagick\\Current")$BinPath
-  }, silent = TRUE), "try-error")) {
+  if (
+    !inherits(
+      try(
+        {
+          magick_path <- utils::readRegistry(
+            "SOFTWARE\\ImageMagick\\Current"
+          )$BinPath
+        },
+        silent = TRUE
+      ),
+      "try-error"
+    )
+  ) {
     if (nzchar(magick_path)) {
       convert <- normalizePath(
-        file.path(magick_path, "convert.exe"), "/",
+        file.path(magick_path, "convert.exe"),
+        "/",
         mustWork = FALSE
       )
     }
   } else if (
     nzchar(prog <- Sys.getenv("ProgramFiles")) &&
       length(magick_dir <- list.files(prog, "^ImageMagick.*")) &&
-      length(magick_path <- list.files(
-        file.path(prog, magick_dir), pattern = "^convert\\.exe$",
-        full.names = TRUE, recursive = TRUE))
+      length(
+        magick_path <- list.files(
+          file.path(prog, magick_dir),
+          pattern = "^convert\\.exe$",
+          full.names = TRUE,
+          recursive = TRUE
+        )
+      )
   ) {
     convert <- normalizePath(magick_path[1], "/", mustWork = FALSE)
-  } else if (!inherits(try({
-    magick_path <- utils::readRegistry(
-      "LyX.Document\\Shell\\open\\command",
-      "HCR"
+  } else if (
+    !inherits(
+      try(
+        {
+          magick_path <- utils::readRegistry(
+            "LyX.Document\\Shell\\open\\command",
+            "HCR"
+          )
+        },
+        silent = TRUE
+      ),
+      "try-error"
     )
-  }, silent = TRUE), "try-error")) {
+  ) {
     convert <- file.path(
       dirname(gsub("(^\"|\" \"%1\"$)", "", magick_path[[1]])),
       c("..", "../etc"),

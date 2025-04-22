@@ -41,8 +41,13 @@
 #' }
 #'
 #' @export
-appshot <- function(app, file = "webshot.png", ...,
-                    port = getOption("shiny.port"), envvars = NULL) {
+appshot <- function(
+  app,
+  file = "webshot.png",
+  ...,
+  port = getOption("shiny.port"),
+  envvars = NULL
+) {
   UseMethod("appshot")
 }
 
@@ -51,11 +56,11 @@ appshot <- function(app, file = "webshot.png", ...,
 #' @export
 appshot.character <- function(
   app,
-  file = "webshot.png", ...,
+  file = "webshot.png",
+  ...,
   port = getOption("shiny.port"),
   envvars = NULL
 ) {
-
   port <- available_port(port)
   url <- shiny_url(port)
 
@@ -97,12 +102,12 @@ appshot.character <- function(
 #' @export
 appshot.shiny.appobj <- function(
   app,
-  file = "webshot.png", ...,
+  file = "webshot.png",
+  ...,
   port = getOption("shiny.port"),
   envvars = NULL,
   webshot_timeout = 60
 ) {
-
   port <- available_port(port)
   url <- shiny_url(port)
 
@@ -155,7 +160,12 @@ appshot.shiny.appobj <- function(
   })
 
   # run the app
-  shiny::runApp(app, port = port, display.mode = "normal", launch.browser = FALSE)
+  shiny::runApp(
+    app,
+    port = port,
+    display.mode = "normal",
+    launch.browser = FALSE
+  )
 
   # return webshot2::webshot file value
   invisible(p$get_result()) # safe to call as the r_bg must have ended

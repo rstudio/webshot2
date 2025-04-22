@@ -22,8 +22,8 @@ NULL
 #' @param selector One or more CSS selectors specifying a DOM element to set the
 #'   clipping rectangle to. The screenshot will contain these DOM elements. For
 #'   a given selector, if it has more than one match, all matching elements will
-#'   be used. This option is not compatible with `cliprect`. 
-#' 
+#'   be used. This option is not compatible with `cliprect`.
+#'
 #'   When taking screenshots of multiple URLs, this parameter can also be a list
 #'   with same length as `url` with each element of the list containing a
 #'   vector of CSS selectors to use for the corresponding URL.
@@ -34,19 +34,19 @@ NULL
 #'   vector specifying the left, top, width, and height. (Note that the order of
 #'   left and top is reversed from the original webshot package.) This option is
 #'   not compatible with `selector`.
-#' 
+#'
 #'   When taking screenshots of multiple URLs, this parameter can also be a list
 #'   with same length as `url` with each element of the list being
-#'   "viewport" or a four-elements numeric vector. 
+#'   "viewport" or a four-elements numeric vector.
 #' @param delay Time to wait before taking screenshot, in seconds. Sometimes a
 #'   longer delay is needed for all assets to display properly.
 #' @param expand A numeric vector specifying how many pixels to expand beyond
 #'   the clipping rectangle determined by `selector`. If one number, the
 #'   rectangle will be expanded by that many pixels on all sides. If four
-#'   numbers, they specify the top, right, bottom, and left, in that order. 
+#'   numbers, they specify the top, right, bottom, and left, in that order.
 #'   This argument is only applied when `selector` is used and is not compatible
 #'   with `cliprect`.
-#' 
+#'
 #'   When taking screenshots of multiple URLs, this parameter can also be a list
 #'   with same length as `url` with each element of the list containing a
 #'   single number or four numbers to use for the corresponding URL.
@@ -128,13 +128,13 @@ webshot <- function(
   max_concurrent = getOption("webshot.concurrent", default = 6),
   quiet = getOption("webshot.quiet", default = FALSE)
 ) {
-
   if (length(url) == 0) {
     stop("Need url.")
   }
 
   # Ensure urls are either web URLs or local file URLs.
-  url <- vapply(url,
+  url <- vapply(
+    url,
     function(x) {
       if (!is_url(x)) {
         # `url` is a filename, not an actual URL. Convert to file:// format.
@@ -150,7 +150,7 @@ webshot <- function(
   # they can be vectors.
   if (!is.null(cliprect) && !is.list(cliprect)) cliprect <- list(cliprect)
   if (!is.null(selector) && !is.list(selector)) selector <- list(selector)
-  if (!is.null(expand)   && !is.list(expand))   expand   <- list(expand)
+  if (!is.null(expand) && !is.list(expand)) expand <- list(expand)
 
   if (is.null(selector)) {
     selector <- "html"
@@ -168,20 +168,22 @@ webshot <- function(
 
   # Check length of arguments and replicate if necessary
   args_all <- list(
-    url       = url,
-    file      = file,
-    vwidth    = as_pixels_int(vwidth), # Chrome requires integer viewport pxs
-    vheight   = as_pixels_int(vheight),
-    selector  = selector,
-    cliprect  = cliprect,
-    expand    = expand,
-    delay     = delay,
-    zoom      = zoom,
+    url = url,
+    file = file,
+    vwidth = as_pixels_int(vwidth), # Chrome requires integer viewport pxs
+    vheight = as_pixels_int(vheight),
+    selector = selector,
+    cliprect = cliprect,
+    expand = expand,
+    delay = delay,
+    zoom = zoom,
     useragent = useragent
   )
 
   n_urls <- length(url)
-  args_all <- mapply(args_all, names(args_all),
+  args_all <- mapply(
+    args_all,
+    names(args_all),
     FUN = function(arg, name) {
       if (length(arg) == 0) {
         return(vector(mode = "list", n_urls))
@@ -190,7 +192,11 @@ webshot <- function(
       } else if (length(arg) == n_urls) {
         return(arg)
       } else {
-        stop("Argument `", name, "` should be NULL, length 1, or same length as `url`.")
+        stop(
+          "Argument `",
+          name,
+          "` should be NULL, length 1, or same length as `url`."
+        )
       }
     },
     SIMPLIFY = FALSE
@@ -201,15 +207,22 @@ webshot <- function(
   cm <- default_chromote_object()
 
   # A list of promises for the screenshots
-  res <- lapply(args_all,
-    function(args) {
-      new_session_screenshot(cm,
-        args$url, args$file, args$vwidth, args$vheight, args$selector,
-        args$cliprect, args$expand, args$delay, args$zoom, args$useragent,
-        quiet
-      )
-    }
-  )
+  res <- lapply(args_all, function(args) {
+    new_session_screenshot(
+      cm,
+      args$url,
+      args$file,
+      args$vwidth,
+      args$vheight,
+      args$selector,
+      args$cliprect,
+      args$expand,
+      args$delay,
+      args$zoom,
+      args$useragent,
+      quiet
+    )
+  })
 
   p <- promise_all(.list = res)
   res <- cm$wait_for(p)
@@ -232,7 +245,6 @@ new_session_screenshot <- function(
   useragent,
   quiet
 ) {
-
   filetype <- tolower(tools::file_ext(file))
   filetypes <- c(webshot_image_types(), "pdf")
   if (!filetype %in% filetypes) {
@@ -250,95 +262,99 @@ new_session_screenshot <- function(
       stop("Invalid value for cliprect: ", cliprect)
     }
   } else {
-    if (!is.null(cliprect) && !(is.numeric(cliprect) && length(cliprect) == 4)) {
-      stop("`cliprect` must be a vector with four numbers, or a list of such vectors")
+    if (
+      !is.null(cliprect) && !(is.numeric(cliprect) && length(cliprect) == 4)
+    ) {
+      stop(
+        "`cliprect` must be a vector with four numbers, or a list of such vectors"
+      )
     }
   }
-
 
   s <- NULL
   err <- NULL
 
-  p <- chromote$new_session(wait_ = FALSE,
-      width = vwidth,
-      height = vheight
-    )$
-    then(function(session) {
-      s <<- session
+  p <- chromote$new_session(
+    wait_ = FALSE,
+    width = vwidth,
+    height = vheight
+  )$then(function(session) {
+    s <<- session
 
-      if (!is.null(useragent)) {
-        s$Network$setUserAgentOverride(userAgent = useragent)
-      }
-      res <- s$Page$loadEventFired(wait_ = FALSE)
-      s$Page$navigate(url, wait_ = FALSE)
-      res
-    })$
-    then(function(value) {
-      # With chrome's new headless mode (v132+), the new session is initialized,
-      # but our requested viewport size is ignored, so we set it explicitly.
-      promise(function(resolve, reject) {
-        s$Emulation$setDeviceMetricsOverride(
-          width = vwidth,
-          height = vheight,
-          deviceScaleFactor = 1,
-          mobile = FALSE,
-          wait_ = FALSE
-        )$then(function(result) {
-          resolve(result)
-        })
-      })$catch(function(error) {
-        warning(
-          "Could not set viewport size to ", vwidth, "x", vheight, ": ",
-          conditionMessage(error)
-        )
-        value
+    if (!is.null(useragent)) {
+      s$Network$setUserAgentOverride(userAgent = useragent)
+    }
+    res <- s$Page$loadEventFired(wait_ = FALSE)
+    s$Page$navigate(url, wait_ = FALSE)
+    res
+  })$then(function(value) {
+    # With chrome's new headless mode (v132+), the new session is initialized,
+    # but our requested viewport size is ignored, so we set it explicitly.
+    promise(function(resolve, reject) {
+      s$Emulation$setDeviceMetricsOverride(
+        width = vwidth,
+        height = vheight,
+        deviceScaleFactor = 1,
+        mobile = FALSE,
+        wait_ = FALSE
+      )$then(function(result) {
+        resolve(result)
       })
-    })$
-    then(function(value) {
-      if (delay > 0) {
-        promise(function(resolve, reject) {
-          later(
-            function() {
-              resolve(value)
-            },
-            delay
-          )
-        })
-      } else {
-        value
-      }
-    })$
-    then(function(value) {
-      if (filetype %in% webshot_image_types()) {
-        s$screenshot(
-          filename = file, selector = selector, cliprect = cliprect,
-          expand = expand, scale = zoom,
-          show = FALSE, wait_ = FALSE
-        )
-
-      } else if (filetype == "pdf") {
-        s$screenshot_pdf(filename = file, wait_ = FALSE)
-      }
-    })$
-    then(function(value) {
-      if (!isTRUE(quiet)) message(url, " screenshot completed")
-      normalizePath(value)
-    })$
-    catch(function(err) {
-      err <<- err
-    })$
-    finally(function() {
-      # Close down the session if we successfully started one
-      if (!is.null(s)) s$close()
-      # Or rethrow the error if we caught one
-      if (!is.null(err)) signalCondition(err)
+    })$catch(function(error) {
+      warning(
+        "Could not set viewport size to ",
+        vwidth,
+        "x",
+        vheight,
+        ": ",
+        conditionMessage(error)
+      )
+      value
     })
+  })$then(function(value) {
+    if (delay > 0) {
+      promise(function(resolve, reject) {
+        later(
+          function() {
+            resolve(value)
+          },
+          delay
+        )
+      })
+    } else {
+      value
+    }
+  })$then(function(value) {
+    if (filetype %in% webshot_image_types()) {
+      s$screenshot(
+        filename = file,
+        selector = selector,
+        cliprect = cliprect,
+        expand = expand,
+        scale = zoom,
+        show = FALSE,
+        wait_ = FALSE
+      )
+    } else if (filetype == "pdf") {
+      s$screenshot_pdf(filename = file, wait_ = FALSE)
+    }
+  })$then(function(value) {
+    if (!isTRUE(quiet)) message(url, " screenshot completed")
+    normalizePath(value)
+  })$catch(function(err) {
+    err <<- err
+  })$finally(function() {
+    # Close down the session if we successfully started one
+    if (!is.null(s)) s$close()
+    # Or rethrow the error if we caught one
+    if (!is.null(err)) signalCondition(err)
+  })
 
   p
 }
 
 webshot_image_types <- function() {
-   c("png", "jpg", "jpeg", "webp")
+  c("png", "jpg", "jpeg", "webp")
 }
 
 knit_print.webshot <- function(x, ...) {
@@ -352,5 +368,5 @@ knit_print.webshot <- function(x, ...) {
 
 #' @export
 print.webshot <- function(x, ...) {
-   invisible(x)
+  invisible(x)
 }
