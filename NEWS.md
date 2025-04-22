@@ -1,4 +1,4 @@
-# webshot2 (development version)
+# webshot2 0.1.2
 
 * Updated the documentation for `webshot()` to clarify that `expand` only applies to the clipping rectangle determined by `selector`. (#68)
 
