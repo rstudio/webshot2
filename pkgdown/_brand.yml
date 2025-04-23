@@ -39,10 +39,16 @@ typography:
   monospace: Source Code Pro
   monospace-inline:
     color: pink
-    background-color: none
-    size: 0.95em
+    background-color: transparent
+    size: 1em
 
 defaults: 
   bootstrap:
     defaults:
       navbar-bg: $brand-blue
+      code-color-dark: "#fa88d4"
+    rules: |
+      html[data-bs-theme="dark"] code {
+        background-color: transparent;
+      }
+        
