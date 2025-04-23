@@ -5,7 +5,8 @@ Authors@R: c(
     person("Winston", "Chang", , "winston@posit.co", role = c("aut", "cre")),
     person("Barret", "Schloerke", , "barret@posit.co", role = "ctb",
            comment = c(ORCID = "0000-0001-9986-114X")),
-    person("Posit Software, PBC", role = c("cph", "fnd"))
+    person("Posit Software, PBC", role = c("cph", "fnd"),
+           comment = c(ROR = "03wc8by49"))
   )
 Description: Takes screenshots of web pages, including Shiny applications
     and R Markdown documents. 'webshot2' uses headless Chrome or Chromium
@@ -28,5 +29,5 @@ Suggests:
     shiny
 Encoding: UTF-8
 Language: en-US
-RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
