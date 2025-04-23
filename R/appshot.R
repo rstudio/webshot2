@@ -1,17 +1,20 @@
 #' Take a screenshot of a Shiny app
 #'
+#' @description
 #' `appshot` performs a [webshot()] using two different methods
-#' depending upon the object provided. If a 'character' is provided (pointing to
-#' an app.R file or app directory) an isolated background R process is launched
-#' to run the Shiny application. The current R process then captures the
-#' [webshot()]. When a Shiny application object is supplied to
-#' `appshot`, it is reversed: the Shiny application runs in the current R
-#' process and an isolated background R process is launched to capture a
-#' [webshot()]. The reason it is reversed in the second case has to do
-#' with scoping: although it would be preferable to run the Shiny application in
-#' a background process and call `webshot` from the current process, with
-#' Shiny application objects, there are potential scoping errors when run this
-#' way.
+#' depending upon the object provided.
+#'
+#' If a string is provided (pointing to an `app.R`` file or app directory) an
+#' isolated background R process is launched to run the Shiny application. The
+#' current R process then captures the [webshot()].
+#'
+#' When a Shiny application object is supplied to `appshot`, it is reversed: the
+#' Shiny application runs in the current R process and an isolated background R
+#' process is launched to capture a [webshot()]. The reason it is reversed in
+#' the second case has to do with scoping: although it would be preferable to
+#' run the Shiny application in a background process and call `webshot` from the
+#' current process, with Shiny application objects, there are potential scoping
+#' errors when run this way.
 #'
 #' @inheritParams webshot
 #' @param app A Shiny app object, or a string naming an app directory.

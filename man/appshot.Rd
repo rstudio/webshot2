@@ -61,17 +61,19 @@ character vector will have a class of \code{"webshot"}.
 }
 \description{
 \code{appshot} performs a \code{\link[=webshot]{webshot()}} using two different methods
-depending upon the object provided. If a 'character' is provided (pointing to
-an app.R file or app directory) an isolated background R process is launched
-to run the Shiny application. The current R process then captures the
-\code{\link[=webshot]{webshot()}}. When a Shiny application object is supplied to
-\code{appshot}, it is reversed: the Shiny application runs in the current R
-process and an isolated background R process is launched to capture a
-\code{\link[=webshot]{webshot()}}. The reason it is reversed in the second case has to do
-with scoping: although it would be preferable to run the Shiny application in
-a background process and call \code{webshot} from the current process, with
-Shiny application objects, there are potential scoping errors when run this
-way.
+depending upon the object provided.
+
+If a string is provided (pointing to an `app.R`` file or app directory) an
+isolated background R process is launched to run the Shiny application. The
+current R process then captures the \code{\link[=webshot]{webshot()}}.
+
+When a Shiny application object is supplied to \code{appshot}, it is reversed: the
+Shiny application runs in the current R process and an isolated background R
+process is launched to capture a \code{\link[=webshot]{webshot()}}. The reason it is reversed in
+the second case has to do with scoping: although it would be preferable to
+run the Shiny application in a background process and call \code{webshot} from the
+current process, with Shiny application objects, there are potential scoping
+errors when run this way.
 }
 \examples{
 if (interactive()) {
