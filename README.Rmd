@@ -51,7 +51,7 @@ webshot("https://www.r-project.org")
 
 ``` r
 # Multiple pages (in parallel!)
-webshot(c("https://www.r-project.org", "https://www.rstudio.com"))
+webshot(c("https://www.r-project.org", "https://shiny.posit.co"))
 ```
 
 <img src="man/figures/README-demo-2.png" width="100%" /><img src="man/figures/README-demo-3.png" width="100%" />
@@ -70,7 +70,7 @@ library(webshot2)
 # Single page
 webshot("https://www.r-project.org", "man/figures/README-demo-1.png")
 # Multiple pages (in parallel!)
-webshot(c("https://www.r-project.org", "https://www.rstudio.com"), c("man/figures/README-demo-2.png", "man/figures/README-demo-3.png"))
+webshot(c("https://www.r-project.org", "https://shiny.posit.co"), c("man/figures/README-demo-2.png", "man/figures/README-demo-3.png"))
 # Specific height and width
 webshot("https://www.r-project.org", "man/figures/README-demo-4.png", vwidth = 1600, vheight = 900, cliprect = "viewport")
 ```
