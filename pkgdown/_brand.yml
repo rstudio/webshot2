@@ -10,10 +10,8 @@ color:
     green: "#00891a"
     teal: "#00bf7f"
     cyan: "#03c7e8"
-    
     white: "#ffffff"
     black: "#1D1F21"
-    gray: "#606060"
     
   foreground: black
   background: white
@@ -47,8 +45,3 @@ defaults:
     defaults:
       navbar-bg: $brand-blue
       code-color-dark: "#fa88d4"
-    rules: |
-      html[data-bs-theme="dark"] code {
-        background-color: transparent;
-      }
-        
