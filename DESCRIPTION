@@ -27,7 +27,7 @@ Suggests:
     httpuv,
     rmarkdown,
     shiny
-Config/Needs/website: r-lib/pkgdown
+Config/Needs/website: r-lib/pkgdown, rstudio/bslib
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
