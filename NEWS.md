@@ -1,6 +1,6 @@
 # webshot2 (development version)
 
-* Migrate GPL-2 license to MIT ()
+* Migrate GPL-2 license to MIT (#79)
 
 * Updated the documentation for `webshot()` to clarify that `expand` only applies to the clipping rectangle determined by `selector`. (#68)
 
