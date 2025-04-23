@@ -1,6 +1,5 @@
 color:
   palette:
-    # Core colors
     blue: "#007bc2"
     indigo: "#4b00c1"
     purple: "#74149c"
@@ -12,12 +11,10 @@ color:
     teal: "#00bf7f"
     cyan: "#03c7e8"
     
-    # Neutrals
     white: "#ffffff"
     black: "#1D1F21"
     gray: "#606060"
     
-  # Semantic colors
   foreground: black
   background: white
   primary: blue
