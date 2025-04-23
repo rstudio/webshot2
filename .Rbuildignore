@@ -10,3 +10,4 @@
 ^man-roxygen$
 ^_dev$
 ^revdep$
+^LICENSE\.md$

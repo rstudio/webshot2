@@ -1,5 +1,7 @@
 # webshot2 (development version)
 
+* Migrate GPL-2 license to MIT (#79)
+
 * Updated the documentation for `webshot()` to clarify that `expand` only applies to the clipping rectangle determined by `selector`. (#68)
 
 * `webshot()` now rounds `vwidth` and `vheight` to the nearest integer to match Chrome's expectations. If this behavior is somehow problematic, you can use `vwidth = I(my_width)` to avoid the conversion. (#70)
