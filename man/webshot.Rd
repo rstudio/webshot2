@@ -36,36 +36,36 @@ of the virtual browser "window". Chrome expects integer values; numeric
 values are rounded to the nearest integer.}
 
 \item{selector}{One or more CSS selectors specifying a DOM element to set the
-  clipping rectangle to. The screenshot will contain these DOM elements. For
-  a given selector, if it has more than one match, all matching elements will
-  be used. This option is not compatible with \code{cliprect}. 
+clipping rectangle to. The screenshot will contain these DOM elements. For
+a given selector, if it has more than one match, all matching elements will
+be used. This option is not compatible with \code{cliprect}.
 
-  When taking screenshots of multiple URLs, this parameter can also be a list
-  with same length as \code{url} with each element of the list containing a
-  vector of CSS selectors to use for the corresponding URL.}
+When taking screenshots of multiple URLs, this parameter can also be a list
+with same length as \code{url} with each element of the list containing a
+vector of CSS selectors to use for the corresponding URL.}
 
 \item{cliprect}{Clipping rectangle. If \code{cliprect} and \code{selector}
-  are both unspecified, the clipping rectangle will contain the entire page.
-  This can be the string \code{"viewport"}, in which case the clipping
-  rectangle matches the viewport size, or it can be a four-element numeric
-  vector specifying the left, top, width, and height. (Note that the order of
-  left and top is reversed from the original webshot package.) This option is
-  not compatible with \code{selector}.
+are both unspecified, the clipping rectangle will contain the entire page.
+This can be the string \code{"viewport"}, in which case the clipping
+rectangle matches the viewport size, or it can be a four-element numeric
+vector specifying the left, top, width, and height. (Note that the order of
+left and top is reversed from the original webshot package.) This option is
+not compatible with \code{selector}.
 
-  When taking screenshots of multiple URLs, this parameter can also be a list
-  with same length as \code{url} with each element of the list being
-  "viewport" or a four-elements numeric vector.}
+When taking screenshots of multiple URLs, this parameter can also be a list
+with same length as \code{url} with each element of the list being
+"viewport" or a four-elements numeric vector.}
 
 \item{expand}{A numeric vector specifying how many pixels to expand beyond
-  the clipping rectangle determined by `selector`. If one number, the
-  rectangle will be expanded by that many pixels on all sides. If four
-  numbers, they specify the top, right, bottom, and left, in that order. 
-  This argument is only applied when `selector` is used and is not compatible
-  with `cliprect`.
+the clipping rectangle determined by \code{selector}. If one number, the
+rectangle will be expanded by that many pixels on all sides. If four
+numbers, they specify the top, right, bottom, and left, in that order.
+This argument is only applied when \code{selector} is used and is not compatible
+with \code{cliprect}.
 
-  When taking screenshots of multiple URLs, this parameter can also be a list
-  with same length as \code{url} with each element of the list containing a
-  single number or four numbers to use for the corresponding URL.}
+When taking screenshots of multiple URLs, this parameter can also be a list
+with same length as \code{url} with each element of the list containing a
+single number or four numbers to use for the corresponding URL.}
 
 \item{delay}{Time to wait before taking screenshot, in seconds. Sometimes a
 longer delay is needed for all assets to display properly.}
@@ -73,7 +73,7 @@ longer delay is needed for all assets to display properly.}
 \item{zoom}{A number specifying the zoom factor. A zoom factor of 2 will
 result in twice as many pixels vertically and horizontally. Note that using
 2 is not exactly the same as taking a screenshot on a HiDPI (Retina)
-device: it is like increasing the zoom to 200% in a desktop browser and
+device: it is like increasing the zoom to 200\% in a desktop browser and
 doubling the height and width of the browser window. This differs from
 using a HiDPI device because some web pages load different,
 higher-resolution images when they know they will be displayed on a HiDPI
@@ -83,11 +83,11 @@ device (but using zoom will not report that there is a HiDPI device).}
 
 \item{max_concurrent}{(Currently not implemented)}
 
-\item{quiet}{If `TRUE`, status updates via console messages are suppressed.}
+\item{quiet}{If \code{TRUE}, status updates via console messages are suppressed.}
 }
 \value{
 Invisibly returns the normalized path to all screenshots taken. The
-  character vector will have a class of `"webshot"`.
+character vector will have a class of \code{"webshot"}.
 }
 \description{
 Take a screenshot of a URL

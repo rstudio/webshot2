@@ -10,3 +10,6 @@
 ^man-roxygen$
 ^_dev$
 ^revdep$
+^[\.]?air\.toml$
+^\.vscode$
+^LICENSE\.md$

@@ -11,7 +11,7 @@ shrink(filename)
 Must be PNG files.}
 }
 \value{
-The `filename` supplied but with a class value of `"webshot"`.
+The \code{filename} supplied but with a class value of \code{"webshot"}.
 }
 \description{
 This does not change size of the image in pixels, nor does it affect

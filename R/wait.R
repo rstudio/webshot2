@@ -6,10 +6,20 @@ server_exists <- function(url_id) {
   # Using a url object instead of the url as a string because readLines() with
   # url string will cause failed connections to stay open
   url_obj <- url(url_id)
-  on.exit({close(url_obj)}, add = TRUE)
+  on.exit(
+    {
+      close(url_obj)
+    },
+    add = TRUE
+  )
 
   ret <- !inherits(
-    try({suppressWarnings(readLines(url_obj, 1))}, silent = TRUE),
+    try(
+      {
+        suppressWarnings(readLines(url_obj, 1))
+      },
+      silent = TRUE
+    ),
     "try-error"
   )
   ret
@@ -31,7 +41,8 @@ wait_until_server_exists <- function(
   while (!server_exists(url)) {
     if (cur_time() - start > timeout) {
       stop(
-        "It took more than ", timeout,
+        "It took more than ",
+        timeout,
         " seconds to launch the Shiny Application. ",
         "There may be something wrong. The process has been killed. ",
         "If the app needs more time to be launched, set ",

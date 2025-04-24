@@ -1,7 +1,7 @@
 #' Take a snapshot of an R Markdown document
 #'
 #' This function can handle both static Rmd documents and Rmd documents with
-#' \code{runtime: shiny}.
+#' `runtime: shiny`.
 #'
 #' @inheritParams appshot
 #' @param doc The path to a Rmd document.
@@ -10,8 +10,8 @@
 #'   default), then it will use 0.2 seconds for static Rmd documents, and 3
 #'   seconds for Rmd documents with runtime:shiny.
 #' @param rmd_args A list of additional arguments to pass to either
-#'   \code{\link[rmarkdown]{render}} (for static Rmd documents) or
-#'   \code{\link[rmarkdown]{run}} (for Rmd documents with runtime:shiny).
+#'   [rmarkdown::render()] (for static Rmd documents) or
+#'   [rmarkdown::run()] (for Rmd documents with runtime:shiny).
 #' @template webshot-return
 #'
 #' @examples
@@ -35,15 +35,20 @@ rmdshot <- function(
   port = getOption("shiny.port"),
   envvars = NULL
 ) {
-
   runtime <- rmarkdown::yaml_front_matter(doc)$runtime
 
   if (is_shiny(runtime)) {
     if (is.null(delay)) delay <- 3
 
-    rmdshot_shiny(doc, file, ..., delay = delay, rmd_args = rmd_args,
-      port = port, envvars = envvars)
-
+    rmdshot_shiny(
+      doc,
+      file,
+      ...,
+      delay = delay,
+      rmd_args = rmd_args,
+      port = port,
+      envvars = envvars
+    )
   } else {
     if (is.null(delay)) delay <- 0.2
 
@@ -55,7 +60,6 @@ rmdshot <- function(
 
 
 rmdshot_shiny <- function(doc, file, ..., rmd_args, port, envvars) {
-
   port <- available_port(port)
   url <- shiny_url(port)
 

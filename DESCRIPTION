@@ -1,16 +1,17 @@
 Package: webshot2
 Title: Take Screenshots of Web Pages
-Version: 0.1.1.9000
+Version: 0.1.2
 Authors@R: c(
     person("Winston", "Chang", , "winston@posit.co", role = c("aut", "cre")),
     person("Barret", "Schloerke", , "barret@posit.co", role = "ctb",
            comment = c(ORCID = "0000-0001-9986-114X")),
-    person("Posit Software, PBC", role = c("cph", "fnd"))
+    person("Posit Software, PBC", role = c("cph", "fnd"),
+           comment = c(ROR = "03wc8by49"))
   )
 Description: Takes screenshots of web pages, including Shiny applications
     and R Markdown documents. 'webshot2' uses headless Chrome or Chromium
     as the browser back-end.
-License: GPL-2
+License: MIT + file LICENSE
 URL: https://rstudio.github.io/webshot2/,
     https://github.com/rstudio/webshot2
 BugReports: https://github.com/rstudio/webshot2/issues
@@ -26,6 +27,8 @@ Suggests:
     httpuv,
     rmarkdown,
     shiny
+Config/Needs/website: r-lib/pkgdown, rstudio/bslib
 Encoding: UTF-8
 Language: en-US
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2

@@ -2,12 +2,12 @@ as_pixels_int <- function(x) {
   if (inherits(x, "AsIs")) {
     return(x)
   }
-  
+
   if (!is.numeric(x)) {
     x_name <- deparse(substitute(x))
     stop("`", x_name, "` must be an integer number of pixels, not '", x, "'.")
   }
-  
+
   round(x, digits = 0)
 }
 
@@ -22,7 +22,6 @@ is_mac <- function() Sys.info()[["sysname"]] == "Darwin"
 is_linux <- function() Sys.info()[["sysname"]] == "Linux"
 
 
-
 # =============================================================================
 # Data manipulation
 # =============================================================================
@@ -31,8 +30,7 @@ is_linux <- function() Sys.info()[["sysname"]] == "Linux"
 # lists, each of which is a one-row "slice" of the input (like a D3 data
 # structure). The input list must be named, and the names must be unique.
 long_to_wide <- function(x) {
-  if (length(x) == 0)
-    return(x)
+  if (length(x) == 0) return(x)
 
   lapply(seq_along(x[[1]]), function(n) {
     lapply(stats::setNames(names(x), names(x)), function(name) {
@@ -60,7 +58,8 @@ available_port <- function(port = NULL, min = 3000, max = 9000) {
     # Check if port is open
     tryCatch(
       handle <- httpuv::startServer("127.0.0.1", port, list()),
-      error = function(e) { }
+      error = function(e) {
+      }
     )
     if (!is.null(handle)) {
       handle$stop()
