@@ -1,39 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://rstudio.github.io/webshot2/404.html</loc>
-  </url>
-  <url>
-    <loc>https://rstudio.github.io/webshot2/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://rstudio.github.io/webshot2/index.html</loc>
-  </url>
-  <url>
-    <loc>https://rstudio.github.io/webshot2/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://rstudio.github.io/webshot2/reference/appshot.html</loc>
-  </url>
-  <url>
-    <loc>https://rstudio.github.io/webshot2/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://rstudio.github.io/webshot2/reference/reexports.html</loc>
-  </url>
-  <url>
-    <loc>https://rstudio.github.io/webshot2/reference/resize.html</loc>
-  </url>
-  <url>
-    <loc>https://rstudio.github.io/webshot2/reference/rmdshot.html</loc>
-  </url>
-  <url>
-    <loc>https://rstudio.github.io/webshot2/reference/shrink.html</loc>
-  </url>
-  <url>
-    <loc>https://rstudio.github.io/webshot2/reference/webshot.html</loc>
-  </url>
-  <url>
-    <loc>https://rstudio.github.io/webshot2/reference/webshot2-package.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://rstudio.github.io/webshot2/404.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/LICENSE-text.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/LICENSE.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/authors.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/index.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/news/index.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/reference/appshot.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/reference/index.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/reference/reexports.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/reference/resize.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/reference/rmdshot.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/reference/shrink.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/reference/webshot.html</loc></url>
+<url><loc>https://rstudio.github.io/webshot2/reference/webshot2-package.html</loc></url>
 </urlset>
+

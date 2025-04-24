@@ -1,9 +1,8 @@
-pandoc: 3.1.2
-pkgdown: 2.0.7
-pkgdown_sha: ~
+pandoc: 3.1.11
+pkgdown: 2.1.1.9000
+pkgdown_sha: 62d5c5a0fc12899aae97f6ce14018d2784bf308b
 articles: {}
-last_built: 2023-09-27T20:58Z
+last_built: 2025-04-24T02:14Z
 urls:
   reference: https://rstudio.github.io/webshot2/reference
   article: https://rstudio.github.io/webshot2/articles
-
